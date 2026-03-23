@@ -1,6 +1,5 @@
-
 import BasePage from '@pages/BasePage';
-import ButtonSamples from '@pages/ButtonSamples';
+import Example from '@pages/Example';
 import { createBrowserRouter } from 'react-router-dom';
 
 const appRouter = createBrowserRouter([
@@ -9,8 +8,8 @@ const appRouter = createBrowserRouter([
         path: '/',
         children: [
             {
-                element: <ButtonSamples />,
-                path: 'button'
+                element: <Example />,
+                path: 'example'
             }
         ]
     }
