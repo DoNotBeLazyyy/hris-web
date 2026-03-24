@@ -1,4 +1,4 @@
-import { ButtonSizeStyleMap, ButtonVariantStyleMap } from '@type/common/style.type';
+import { ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap } from '@type/common/style.type';
 
 // Button variant style presets.
 export const BUTTON_STYLES: ButtonVariantStyleMap = {
@@ -145,3 +145,17 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
         iconSize: '24px'
     }
 };
+
+// Input size style presets.
+export const INPUT_SIZE_STYLES: InputSizeStyleMap = {
+    SMALL: {
+        fontSize: '14px',
+        height: '36px',
+        lineHeight: '20px'
+    },
+    LARGE: {
+        fontSize: '16px',
+        height: '48px',
+        lineHeight: '24px'
+    }
+} as const;
