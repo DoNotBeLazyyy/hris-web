@@ -55,19 +55,18 @@ export default function CommonButton({
         isLoading = false,
         loadingIcon = <SpinnerIcon className="animate-spin" />
     } = loadingProps ?? {}; // Loading props destructure
-    const resolvedStartIcon = startIcon
-        ? isLoading
-            ? loadingIcon
-            : startIcon
-        : null; // Resolved start icon
-    const resolvedEndIcon = endIcon
-        ? isLoading
-            ? loadingIcon
-            : endIcon
-        : null; // Resolved end icon
+    const resolvedStartIcon = resolveIcon(startIcon); // Resolved start icon
+    const resolvedEndIcon = startIcon
+        ? null
+        : resolveIcon(endIcon); // Resolved end icon
     const resolvedLoadingStyle = isLoading
         ? { '&.Mui-disabled': { ...loadingStyle } }
         : {}; // Button loading style
+    const resolvedSx = sx
+        ? Array.isArray(sx)
+            ? sx
+            : [sx]
+        : []; // Resolved sx
     const baseStyle: ThemeSx = {
         alignItems: 'center',
         display: 'inline-flex',
@@ -81,9 +80,25 @@ export default function CommonButton({
             width: iconSize
         }
     }; // Base style
+    const isDisabled = disabled || isLoading; // Whether the button should be disabled
+
+    /**
+     * Displays the loading icon when the button is loading, the original icon
+     * otherwise, or null when no icon is provided.
+     *
+     * @param icon - The original icon to render.
+     * @returns
+     */
+    function resolveIcon(icon: ReactNode) {
+        return icon
+            ? (isLoading
+                ? loadingIcon
+                : icon)
+            : null;
+    }
 
     return <Button
-        disabled={disabled || isLoading}
+        disabled={isDisabled}
         disableElevation
         disableFocusRipple
         disableRipple
@@ -94,9 +109,7 @@ export default function CommonButton({
             buttonSize,
             buttonStyle,
             resolvedLoadingStyle,
-            ...(Array.isArray(sx)
-                ? sx
-                : [sx])
+            ...resolvedSx
         ]}
         {...props}
     />;
