@@ -1,4 +1,5 @@
 import { ThemeSx } from '@type/common.type';
+import { CSSProperties } from 'react';
 
 // Button style props
 export type ButtonSize = 'XSMALL' | 'SMALL' | 'MEDIUM' | 'LARGE' | 'XLARGE';
@@ -22,4 +23,17 @@ interface ButtonSizeStyleConfig {
 
     // Button loading state style
     iconSize: string;
+}
+
+// Input style props
+export type InputSize = 'SMALL' | 'LARGE';
+export type InputSizeStyleMap = Record<InputSize, CSSProperties>;
+
+// Field style props
+export interface FieldStyleProps {
+    // Input size
+    inputSize?: InputSize;
+
+    // Whether to use flat style
+    isFlat?: boolean;
 }
