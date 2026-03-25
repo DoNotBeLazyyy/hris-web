@@ -13,23 +13,30 @@ export default function InputQuickPreview() {
             subtitle="Common input examples for quick visual checking."
             title="Quick Preview"
         >
-            <InputDemoRow label="Primary samples">
-                <InputPreviewCard title="Default">
-                    <CommonInput placeholder="Enter full name" />
+            <InputDemoRow label="Outlined variant">
+                <InputPreviewCard title="Outlined / Default">
+                    <CommonInput inputVariant="OUTLINED" placeholder="Enter full name" />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="Flat">
-                    <CommonInput placeholder="Search records" />
-                </InputPreviewCard>
-
-                <InputPreviewCard title="Disabled">
-                    <CommonInput disabled placeholder="Disabled input" />
+                <InputPreviewCard title="Outlined / Disabled">
+                    <CommonInput disabled inputVariant="OUTLINED" placeholder="Disabled input" />
                 </InputPreviewCard>
             </InputDemoRow>
 
-            <InputDemoRow label="With adornments">
-                <InputPreviewCard title="Start icon">
+            <InputDemoRow label="Filled variant">
+                <InputPreviewCard title="Filled / Default">
+                    <CommonInput inputVariant="FILLED" placeholder="Search records" />
+                </InputPreviewCard>
+
+                <InputPreviewCard title="Filled / Disabled">
+                    <CommonInput disabled inputVariant="FILLED" placeholder="Disabled input" />
+                </InputPreviewCard>
+            </InputDemoRow>
+
+            <InputDemoRow label="Outlined with adornments">
+                <InputPreviewCard title="Outlined / Start icon">
                     <CommonInput
+                        inputVariant="OUTLINED"
                         placeholder="Search"
                         slotProps={{
                             input: {
@@ -43,8 +50,9 @@ export default function InputQuickPreview() {
                     />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="End icon">
+                <InputPreviewCard title="Outlined / End icon">
                     <CommonInput
+                        inputVariant="OUTLINED"
                         placeholder="Pick date"
                         slotProps={{
                             input: {
@@ -57,9 +65,28 @@ export default function InputQuickPreview() {
                         }}
                     />
                 </InputPreviewCard>
+            </InputDemoRow>
 
-                <InputPreviewCard title="Start and end icon">
+            <InputDemoRow label="Filled with adornments">
+                <InputPreviewCard title="Filled / Start icon">
                     <CommonInput
+                        inputVariant="FILLED"
+                        placeholder="Search"
+                        slotProps={{
+                            input: {
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon fontSize="small" />
+                                    </InputAdornment>
+                                )
+                            }
+                        }}
+                    />
+                </InputPreviewCard>
+
+                <InputPreviewCard title="Filled / Start and end">
+                    <CommonInput
+                        inputVariant="FILLED"
                         placeholder="Password"
                         slotProps={{
                             input: {

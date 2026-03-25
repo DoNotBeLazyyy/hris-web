@@ -18,7 +18,7 @@ export default function InputPreviewCard({
                 gap: '8px',
                 maxWidth: '320px',
                 minWidth: '260px',
-                width: '100%'
+                width: 'auto'
             }}
         >
             <Typography

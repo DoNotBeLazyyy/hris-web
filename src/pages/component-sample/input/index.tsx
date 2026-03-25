@@ -1,8 +1,8 @@
 import { Box, Stack, Typography } from '@mui/material';
-import InputAdornmentSamples from './InputAdornmentSamples';
-import InputQuickPreview from './InputQuickPreview';
-import InputSizeSamples from './InputSizeSamples';
-import InputStateSamples from './InputStateSamples';
+import InputAdornmentSamples from '@pages/component-sample/input/InputAdornmentSamples';
+import InputQuickPreview from '@pages/component-sample/input/InputQuickPreview';
+import InputSizeSamples from '@pages/component-sample/input/InputSizeSamples';
+import InputStateSamples from '@pages/component-sample/input/InputStateSamples';
 
 export default function CommonInputSample() {
     return (

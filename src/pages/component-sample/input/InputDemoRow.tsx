@@ -39,7 +39,9 @@ export default function InputDemoRow({
                 flexWrap="wrap"
                 gap={2}
                 sx={{
-                    width: '100%'
+                    width: '100%',
+                    alignItems: 'flex-start',
+                    justifyItems: 'flex-start'
                 }}
             >
                 {children}

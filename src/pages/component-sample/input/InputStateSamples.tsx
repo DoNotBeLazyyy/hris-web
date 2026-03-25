@@ -9,16 +9,17 @@ import InputSectionCard from '@pages/component-sample/input/InputSectionCard';
 export default function InputStateSamples() {
     return (
         <InputSectionCard
-            subtitle="Reference examples for different input states."
+            subtitle="Reference examples for different input states and variants."
             title="State Reference"
         >
-            <InputDemoRow label="Default">
-                <InputPreviewCard title="Regular">
-                    <CommonInput placeholder="Enter username" />
+            <InputDemoRow label="Default / Outlined">
+                <InputPreviewCard title="Outlined / Regular">
+                    <CommonInput inputVariant="OUTLINED" placeholder="Enter username" />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="With start icon">
+                <InputPreviewCard title="Outlined / With start icon">
                     <CommonInput
+                        inputVariant="OUTLINED"
                         placeholder="Search users"
                         slotProps={{
                             input: {
@@ -32,8 +33,9 @@ export default function InputStateSamples() {
                     />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="With end icon">
+                <InputPreviewCard title="Outlined / With end icon">
                     <CommonInput
+                        inputVariant="OUTLINED"
                         placeholder="Password"
                         slotProps={{
                             input: {
@@ -48,14 +50,15 @@ export default function InputStateSamples() {
                 </InputPreviewCard>
             </InputDemoRow>
 
-            <InputDemoRow label="Flat">
-                <InputPreviewCard title="Flat / regular">
-                    <CommonInput placeholder="Flat input" />
+            <InputDemoRow label="Default / Filled">
+                <InputPreviewCard title="Filled / Regular">
+                    <CommonInput inputVariant="FILLED" placeholder="Enter username" />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="Flat / start icon">
+                <InputPreviewCard title="Filled / With start icon">
                     <CommonInput
-                        placeholder="Search"
+                        inputVariant="FILLED"
+                        placeholder="Search users"
                         slotProps={{
                             input: {
                                 startAdornment: (
@@ -68,8 +71,9 @@ export default function InputStateSamples() {
                     />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="Flat / end icon">
+                <InputPreviewCard title="Filled / With end icon">
                     <CommonInput
+                        inputVariant="FILLED"
                         placeholder="Password"
                         slotProps={{
                             input: {
@@ -84,14 +88,15 @@ export default function InputStateSamples() {
                 </InputPreviewCard>
             </InputDemoRow>
 
-            <InputDemoRow label="Disabled">
-                <InputPreviewCard title="Disabled / regular">
-                    <CommonInput disabled placeholder="Disabled input" />
+            <InputDemoRow label="Disabled / Outlined">
+                <InputPreviewCard title="Outlined / Disabled / regular">
+                    <CommonInput disabled inputVariant="OUTLINED" placeholder="Disabled input" />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="Disabled / start icon">
+                <InputPreviewCard title="Outlined / Disabled / start icon">
                     <CommonInput
                         disabled
+                        inputVariant="OUTLINED"
                         placeholder="Disabled search"
                         slotProps={{
                             input: {
@@ -105,9 +110,50 @@ export default function InputStateSamples() {
                     />
                 </InputPreviewCard>
 
-                <InputPreviewCard title="Disabled / end icon">
+                <InputPreviewCard title="Outlined / Disabled / end icon">
                     <CommonInput
                         disabled
+                        inputVariant="OUTLINED"
+                        placeholder="Disabled password"
+                        slotProps={{
+                            input: {
+                                endAdornment: (
+                                    <InputAdornment position="end">
+                                        <VisibilityOffOutlinedIcon fontSize="small" />
+                                    </InputAdornment>
+                                )
+                            }
+                        }}
+                    />
+                </InputPreviewCard>
+            </InputDemoRow>
+
+            <InputDemoRow label="Disabled / Filled">
+                <InputPreviewCard title="Filled / Disabled / regular">
+                    <CommonInput disabled inputVariant="FILLED" placeholder="Disabled input" />
+                </InputPreviewCard>
+
+                <InputPreviewCard title="Filled / Disabled / start icon">
+                    <CommonInput
+                        disabled
+                        inputVariant="FILLED"
+                        placeholder="Disabled search"
+                        slotProps={{
+                            input: {
+                                startAdornment: (
+                                    <InputAdornment position="start">
+                                        <SearchIcon fontSize="small" />
+                                    </InputAdornment>
+                                )
+                            }
+                        }}
+                    />
+                </InputPreviewCard>
+
+                <InputPreviewCard title="Filled / Disabled / end icon">
+                    <CommonInput
+                        disabled
+                        inputVariant="FILLED"
                         placeholder="Disabled password"
                         slotProps={{
                             input: {
