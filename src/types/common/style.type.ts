@@ -22,7 +22,7 @@ interface ButtonSizeStyleConfig {
     buttonSize: ThemeSx;
 
     // Button loading state style
-    iconSize: string;
+    buttonIconSize: string;
 }
 
 // Input style props
@@ -44,6 +44,9 @@ export interface FieldStyleProps {
 interface InputSizeStyleConfig {
     // Input size style
     inputSizeStyle: CSSProperties;
+
+    // Multiline size style
+    multilineSizeStyle: CSSProperties;
 
     // Left icon size
     leftIconSize: string;

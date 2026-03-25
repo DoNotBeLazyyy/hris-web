@@ -1,9 +1,20 @@
 import { INPUT_SIZE_STYLES, INPUT_VARIANT_STYLES } from '@constants/style.constant';
+import { TextField } from '@mui/material';
 import { CSSObject, styled } from '@mui/material/styles';
 import deepmerge from '@mui/utils/deepmerge';
+import { ThemeSx } from '@type/common.type';
 import { FieldStyleProps } from '@type/common/style.type';
 import { ComponentProps, ComponentType } from 'react';
 
+// MUI TextField enhanced with custom size and variant styling via fieldStyled
+export const StyledTextField = fieldStyled(TextField);
+
+/**
+ * Enhances a MUI component with custom input size and variant styles.
+ *
+ * @param Component - The MUI component to enhance with custom styles.
+ * @returns
+ */
 export function fieldStyled<T extends ComponentType<ComponentProps<T>>>(Component: T) {
     return styled(
         Component,
@@ -13,7 +24,12 @@ export function fieldStyled<T extends ComponentType<ComponentProps<T>>>(Componen
             inputSizeStyle: {
                 fontSize,
                 height,
-                lineHeight
+                lineHeight,
+                padding
+            },
+            multilineSizeStyle: {
+                minHeight,
+                minWidth
             },
             leftIconSize,
             rightIconSize
@@ -28,7 +44,14 @@ export function fieldStyled<T extends ComponentType<ComponentProps<T>>>(Componen
                     borderRadius: '8px',
                     height,
                     minHeight: height,
-                    padding: '12px 16px',
+                    padding,
+                    '&.MuiInputBase-multiline': {
+                        alignItems: 'flex-start',
+                        height: 'auto',
+                        minHeight,
+                        minWidth,
+                        width: 'auto'
+                    },
                     '& .MuiInputAdornment-positionStart': {
                         marginRight: '12px',
                         '& svg': iconSize(leftIconSize)
@@ -64,11 +87,24 @@ export function fieldStyled<T extends ComponentType<ComponentProps<T>>>(Componen
 }
 
 /**
+ * Normalizes the MUI sx prop into an array for safe spreading in sx arrays.
+ *
+ * @param sx - The sx prop value to normalize.
+ * @returns
+ */
+export function normalizeSx(sx?: ThemeSx) {
+    return Array.isArray(sx)
+        ? sx
+        : [sx];
+}
+
+/**
  * Returns consistent fontSize, height, and width styles for icon sizing.
  *
  * @param size - The size applied to fontSize, height, and width.
+ * @returns
  */
-function iconSize(size: string) {
+export function iconSize(size: string) {
     return {
         fontSize: size,
         height: size,

@@ -3,6 +3,7 @@ import SpinnerIcon from '@icons/SpinnerIcon';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { ThemeSx } from '@type/common.type';
 import { ButtonSize, ButtonVariant } from '@type/common/style.type';
+import { iconSize, normalizeSx } from '@utils/theme.util';
 import { ReactNode } from 'react';
 
 interface ButtonLoadingProps {
@@ -50,7 +51,7 @@ export default function CommonButton({
     ...props
 }: CommonButtonProps) {
     const { buttonStyle, loadingStyle } = BUTTON_STYLES[variant]; // Button styles
-    const { buttonSize, iconSize } = BUTTON_SIZE_STYLES[size] ; // Button size styles
+    const { buttonSize, buttonIconSize } = BUTTON_SIZE_STYLES[size] ; // Button size styles
     const {
         isLoading = false,
         loadingIcon = <SpinnerIcon className="animate-spin" />
@@ -62,11 +63,6 @@ export default function CommonButton({
     const resolvedLoadingStyle = isLoading
         ? { '&.Mui-disabled': { ...loadingStyle } }
         : {}; // Button loading style
-    const resolvedSx = sx
-        ? Array.isArray(sx)
-            ? sx
-            : [sx]
-        : []; // Resolved sx
     const baseStyle: ThemeSx = {
         alignItems: 'center',
         display: 'inline-flex',
@@ -74,10 +70,9 @@ export default function CommonButton({
         justifyContent: 'center',
         minWidth: 'unset',
         textTransform: 'none',
-        '& .MuiButton-iconSizeMedium': { margin: 0 },
-        '& .MuiButton-iconSizeMedium svg': {
-            height: iconSize,
-            width: iconSize
+        '& .MuiButton-iconSizeMedium': {
+            margin: 0,
+            '& svg': iconSize(buttonIconSize)
         }
     }; // Base style
     const isDisabled = disabled || isLoading; // Whether the button should be disabled
@@ -109,7 +104,7 @@ export default function CommonButton({
             buttonSize,
             buttonStyle,
             resolvedLoadingStyle,
-            ...resolvedSx
+            ...normalizeSx(sx)
         ]}
         {...props}
     />;
