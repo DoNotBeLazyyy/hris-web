@@ -1,23 +1,28 @@
-import { TextField, TextFieldProps } from '@mui/material';
+import { INPUT_DEFAULT_PROPS } from '@constants/style.constant';
+import { TextFieldProps } from '@mui/material';
 import { FieldStyleProps } from '@type/common/style.type';
-import { fieldStyled } from '@utils/theme.util';
+import { StyledTextField } from '@utils/theme.util';
 import { forwardRef } from 'react';
 
-const StyledTextField = fieldStyled(TextField);
+export type CommonInputProps = Omit<TextFieldProps, 'size' | 'variant'> & FieldStyleProps;
 
-type CommonInputProps = Omit<TextFieldProps, 'size' | 'variant'> & FieldStyleProps;
-
-const CommonInput = forwardRef<HTMLInputElement, CommonInputProps>(({
-    inputSize = 'LARGE',
-    inputVariant = 'FILLED',
-    ...props
-}, ref) => {
+/**
+ * CommonInput
+ *
+ * A customizable styled single-line text input built on MUI TextField,
+ * with custom size and variant support.
+ *
+ * @example
+ * <CommonInput
+ *  inputVariant="OUTLINED"
+ *  placeholder="Search"
+ * />
+ */
+const CommonInput = forwardRef<HTMLInputElement, CommonInputProps>(({ ...props }, ref) => {
     return (
         <StyledTextField
-            fullWidth
             inputRef={ref}
-            inputSize={inputSize}
-            inputVariant={inputVariant}
+            {...INPUT_DEFAULT_PROPS}
             {...props}
         />
     );
