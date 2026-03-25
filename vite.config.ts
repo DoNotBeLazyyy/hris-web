@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
                 { find: '@components', replacement: path.resolve(__dirname, 'src/components') },
                 { find: '@constants', replacement: path.resolve(__dirname, 'src/constants') },
                 { find: '@hooks', replacement: path.resolve(__dirname, 'src/hooks') },
+                { find: '@icons', replacement: path.resolve(__dirname, 'src/icons') },
                 { find: '@locales', replacement: path.resolve(__dirname, 'src/locales') },
                 { find: '@pages', replacement: path.resolve(__dirname, 'src/pages') },
                 { find: '@router', replacement: path.resolve(__dirname, 'src/router') },

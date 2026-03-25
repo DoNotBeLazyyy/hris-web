@@ -1,3 +1,5 @@
+import { SxProps, Theme } from '@mui/material/styles';
+import React from 'react';
 
 // SizeType used for defining size.
 export type SizeType = 'sm' | 'md' | 'lg';
@@ -15,3 +17,9 @@ export type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
 export type ButtonMouseEvent = React.MouseEvent<HTMLButtonElement>;
 
 export type TooltipSlotProps = 'title' | 'children';
+
+// Icon props
+export type IconSvgProps = React.SVGProps<SVGSVGElement>;
+
+// MUI props
+export type ThemeSx = SxProps<Theme>;
