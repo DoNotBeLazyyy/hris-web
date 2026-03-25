@@ -9,7 +9,7 @@ type CommonInputProps = Omit<TextFieldProps, 'size' | 'variant'> & FieldStylePro
 
 const CommonInput = forwardRef<HTMLInputElement, CommonInputProps>(({
     inputSize = 'LARGE',
-    isFlat = false,
+    inputVariant = 'FILLED',
     ...props
 }, ref) => {
     return (
@@ -17,8 +17,7 @@ const CommonInput = forwardRef<HTMLInputElement, CommonInputProps>(({
             fullWidth
             inputRef={ref}
             inputSize={inputSize}
-            isFlat={isFlat}
-            variant="outlined"
+            inputVariant={inputVariant}
             {...props}
         />
     );

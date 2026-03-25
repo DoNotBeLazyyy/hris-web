@@ -1,4 +1,4 @@
-import { ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap } from '@type/common/style.type';
+import { ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap } from '@type/common/style.type';
 
 // Button variant style presets.
 export const BUTTON_STYLES: ButtonVariantStyleMap = {
@@ -149,13 +149,57 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
 // Input size style presets.
 export const INPUT_SIZE_STYLES: InputSizeStyleMap = {
     SMALL: {
-        fontSize: '14px',
-        height: '36px',
-        lineHeight: '20px'
+        inputSizeStyle: {
+            fontSize: '14px',
+            height: '36px',
+            lineHeight: '20px'
+        },
+        leftIconSize: '20px',
+        rightIconSize: '16px'
     },
     LARGE: {
-        fontSize: '16px',
-        height: '48px',
-        lineHeight: '24px'
+        inputSizeStyle: {
+            fontSize: '16px',
+            height: '48px',
+            lineHeight: '24px'
+        },
+        leftIconSize: '24px',
+        rightIconSize: '20px'
     }
 } as const;
+
+export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
+    OUTLINED: {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#FAFAFA',
+            '&.Mui-focused fieldset': { border: '2px solid #022179' },
+            '&.Mui-disabled': { backgroundColor: '#E4E4E7' },
+            [`
+                & fieldset,
+                &:hover fieldset,
+                &.Mui-disabled fieldset
+            `]: { border: '1px solid #D4D4D8' },
+            [`
+                & .MuiOutlinedInput-input::placeholder,
+                & .MuiOutlinedInput-root .MuiInputAdornment-positionStart svg,
+                & .MuiOutlinedInput-root .MuiInputAdornment-positionEnd svg
+            `]: { color: '#3F3F46' }
+        }
+    },
+    FILLED: {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#F4F4F5',
+            '&.Mui-focused': { backgroundColor: '#E0EDFD' },
+            '&.Mui-disabled': { backgroundColor: '#E4E4E7' },
+            '& .MuiInputAdornment-positionStart svg': { color: '#011554' },
+            '& .MuiInputAdornment-positionEnd svg': { color: '#18181B' },
+            '& .MuiOutlinedInput-input::placeholder': { color: '#52525B' },
+            [`
+                & fieldset,
+                &:hover fieldset,
+                &.Mui-focused fieldset,
+                &.Mui-disabled fieldset
+            `]: { border: '0' }
+        }
+    }
+};

@@ -2,8 +2,8 @@ import { ThemeSx } from '@type/common.type';
 import { CSSProperties } from 'react';
 
 // Button style props
-export type ButtonSize = 'XSMALL' | 'SMALL' | 'MEDIUM' | 'LARGE' | 'XLARGE';
 export type ButtonVariant = 'PRIMARY' | 'SECONDARY' | 'OUTLINE' | 'GHOST';
+export type ButtonSize = 'XSMALL' | 'SMALL' | 'MEDIUM' | 'LARGE' | 'XLARGE';
 export type ButtonVariantStyleMap = Record<ButtonVariant, ButtonVariantStyleConfig>;
 export type ButtonSizeStyleMap = Record<ButtonSize, ButtonSizeStyleConfig>;
 
@@ -26,14 +26,28 @@ interface ButtonSizeStyleConfig {
 }
 
 // Input style props
+export type InputVariant = 'OUTLINED' | 'FILLED';
 export type InputSize = 'SMALL' | 'LARGE';
-export type InputSizeStyleMap = Record<InputSize, CSSProperties>;
+export type InputVariantStyleMap = Record<InputVariant, ThemeSx>;
+export type InputSizeStyleMap = Record<InputSize, InputSizeStyleConfig>;
 
 // Field style props
 export interface FieldStyleProps {
     // Input size
     inputSize?: InputSize;
 
-    // Whether to use flat style
-    isFlat?: boolean;
+    // Input variant
+    inputVariant?: InputVariant;
+}
+
+// Button variant style configuration
+interface InputSizeStyleConfig {
+    // Input size style
+    inputSizeStyle: CSSProperties;
+
+    // Left icon size
+    leftIconSize: string;
+
+    // Right icon size
+    rightIconSize: string;
 }
