@@ -1,4 +1,8 @@
-import { ButtonSizeStyleMap, ButtonVariantStyleMap } from '@type/common/style.type';
+import CheckIcon from '@icons/CheckIcon';
+import CircleIcon from '@icons/CircleIcon';
+import WarningIcon from '@icons/WarningIcon';
+import XCircleIcon from '@icons/XCircleIcon';
+import { ButtonSizeStyleMap, ButtonVariantStyleMap, StatusBadgeVariantMap } from '@type/common/style.type';
 
 // Button variant style presets.
 export const BUTTON_STYLES: ButtonVariantStyleMap = {
@@ -143,5 +147,28 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             p: '20px'
         },
         iconSize: '24px'
+    }
+};
+
+export const STATUS_CONFIG: StatusBadgeVariantMap = {
+    INFO: {
+        color: '#3B82F6',
+        backgroundColor: '#DBEAFE',
+        icon: <CircleIcon />
+    },
+    SUCCESS: {
+        color: '#22C55E',
+        backgroundColor: '#DCFCE7',
+        icon: <CheckIcon />
+    },
+    WARNING: {
+        color: '#F59E0B',
+        backgroundColor: '#FEF3C7',
+        icon: <WarningIcon />
+    },
+    ERROR: {
+        color: '#EF4444',
+        backgroundColor: '#FEE2E2',
+        icon: <XCircleIcon />
     }
 };

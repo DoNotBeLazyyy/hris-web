@@ -1,4 +1,5 @@
-import StatusBadge from '@components/statusBadge/StatusBadge';
+import CommonStatusBadge from '@components/badge/CommonStatusBadge';
+import CommonStatusChip from '@components/badge/CommonStatusChip';
 import CommonToggleSwitch from '@components/switch/CommonToggleSwitch';
 import { Outlet } from 'react-router-dom';
 
@@ -22,17 +23,21 @@ export default function BasePage() {
                     }
                 }}
             />
-            <StatusBadge
+            <CommonStatusBadge
                 label="Status"
-                status="info"
+                status="INFO"
             />
-            <StatusBadge label="Status" status="info" />
-            <StatusBadge label="Status" status="success" />
-            <StatusBadge label="Status" status="warning" />
-            <StatusBadge
+            <CommonStatusBadge label="Status" status="INFO" />
+            <CommonStatusBadge label="Status" status="SUCCESS" />
+            <CommonStatusBadge label="Status" status="WARNING" />
+            <CommonStatusBadge
                 label="Status"
-                status="error"
+                status="ERROR"
             />
+            <CommonStatusChip status="ACTIVE"/>
+            <CommonStatusChip status="INACTIVE"/>
+            <CommonStatusChip status="PRESENT"/>
+            <CommonStatusChip status="ABSENT"/>
             <Outlet />
         </div>
     );
