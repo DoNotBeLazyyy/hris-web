@@ -1,132 +1,113 @@
-import { styled } from '@mui/material';
-import { ComponentType } from 'react';
+import { INPUT_SIZE_STYLES, INPUT_VARIANT_STYLES } from '@constants/style.constant';
+import { TextField } from '@mui/material';
+import { CSSObject, styled } from '@mui/material/styles';
+import deepmerge from '@mui/utils/deepmerge';
+import { ThemeSx } from '@type/common.type';
+import { FieldStyleProps } from '@type/common/style.type';
+import { ComponentProps, ComponentType } from 'react';
+
+// MUI TextField enhanced with custom size and variant styling via fieldStyled
+export const StyledTextField = fieldStyled(TextField);
 
 /**
- * Applies consistent custom styles to MUI input components (TextField, Autocomplete, etc.).
+ * Enhances a MUI component with custom input size and variant styles.
  *
- * @param Component input component to be styled.
+ * @param Component - The MUI component to enhance with custom styles.
  * @returns
  */
-export function fieldStyled<T extends ComponentType<React.ComponentProps<T>>>(Component: T) {
-    return styled(Component)(() => {
-        const inputHeight = '50px'; // Input height
-        const placeholderColor = {
-            color: '#B2B2B2',
-            fontSize: '15px',
-            fontWeight: 500,
-            opacity: 1
-        }; // Placeholder style
-        const commonStyle = {
-            borderRadius: '3px',
-            height: inputHeight
-        }; // Common input style
-        const borderStyle = {
-            borderColor: '#D5D5D5',
-            borderWidth: '1px'
-        }; // Border style
+export function fieldStyled<T extends ComponentType<ComponentProps<T>>>(Component: T) {
+    return styled(
+        Component,
+        { shouldForwardProp: (prop) => prop !== 'inputSize' && prop !== 'inputVariant' }
+    )<FieldStyleProps>(({ inputSize = 'LARGE', inputVariant = 'OUTLINED' }) => {
+        const {
+            inputSizeStyle: {
+                fontSize,
+                height,
+                lineHeight,
+                padding
+            },
+            multilineSizeStyle: {
+                minHeight,
+                minWidth
+            },
+            leftIconSize,
+            rightIconSize
+        } = INPUT_SIZE_STYLES[inputSize]; // Input size style
+        const variantStyle = INPUT_VARIANT_STYLES[inputVariant]; // Input variant style
+        const disabledColor = '#A1A1AA'; // Disabled text color
 
-        return {
-            '& .MuiInputBase-root': {
-                ...commonStyle,
-                '& input': {
-                    color: '#242424',
-                    fontSize: '15px',
-                    padding: '0 15px'
+        return deepmerge(
+            variantStyle,
+            {
+                '& .MuiOutlinedInput-root': {
+                    borderRadius: '8px',
+                    height,
+                    minHeight: height,
+                    padding,
+                    '&.MuiInputBase-multiline': {
+                        alignItems: 'flex-start',
+                        height: 'auto',
+                        minHeight,
+                        minWidth,
+                        width: 'auto'
+                    },
+                    '& .MuiInputAdornment-positionStart': {
+                        marginRight: '12px',
+                        '& svg': iconSize(leftIconSize)
+                    },
+                    '& .MuiInputAdornment-positionEnd': {
+                        marginX: 0,
+                        '& svg': iconSize(rightIconSize)
+                    },
+                    '&.Mui-focused': {
+                        '& .MuiInputAdornment-positionStart svg': { color: '#011554' },
+                        '& .MuiInputAdornment-positionEnd svg': { color: '#18181B' }
+                    },
+                    '&.Mui-disabled .MuiInputAdornment-root svg': { color: disabledColor }
                 },
-                '& input::placeholder': placeholderColor,
-                '.MuiOutlinedInput-notchedOutline': borderStyle,
-                '&.Mui-focused, &.Mui-focused:hover': {
-                    '& .MuiOutlinedInput-notchedOutline': borderStyle
+                '& .MuiOutlinedInput-input': {
+                    boxSizing: 'border-box',
+                    color: '#27272A',
+                    fontSize,
+                    lineHeight,
+                    padding: 0,
+                    '&.Mui-disabled': {
+                        color: disabledColor,
+                        WebkitTextFillColor: disabledColor
+                    }
                 },
-                '&:hover': {
-                    '& .MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&.Mui-disabled, &.Mui-disabled:hover': {
-                    '.MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&.Mui-error .MuiOutlinedInput-notchedOutline': borderStyle
-            },
-            '&.MuiOutlinedInput-root': {
-                ...commonStyle,
-                '.MuiOutlinedInput-notchedOutline': borderStyle,
-                '&.Mui-focused, &.Mui-focused:hover': {
-                    '& .MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&:hover': {
-                    '& .MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&.Mui-disabled, &.Mui-disabled:hover': {
-                    '.MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&.Mui-error .MuiOutlinedInput-notchedOutline': borderStyle
-            },
-            '& .MuiAutocomplete-inputRoot': {
-                height: 'auto',
-                minHeight: inputHeight
+                '& .MuiAutocomplete-inputRoot': {
+                    height: 'auto',
+                    minHeight: height
+                }
             }
-        };
+        ) as CSSObject;
     });
 }
 
 /**
- * Applies consistent custom styles to MUI input select component.
+ * Normalizes the MUI sx prop into an array for safe spreading in sx arrays.
  *
- * @param Component input component to be styled.
+ * @param sx - The sx prop value to normalize.
  * @returns
  */
-export function selectStyled<T extends ComponentType<React.ComponentProps<T>>>(Component: T) {
-    return styled(Component)(() => {
-        const borderStyle = {
-            border: '1px solid #D4D4D4'
-        }; // base border used across components
-        const heightStyle = {
-            height: '26px',
-            minHeight: '26px'
-        }; // fixed component height
-        const commonBackgroundColor = { backgroundColor: 'transparent' }; // shared transparent background
+export function normalizeSx(sx?: ThemeSx) {
+    return Array.isArray(sx)
+        ? sx
+        : [sx];
+}
 
-        return {
-            '&.MuiOutlinedInput-root': {
-                color: '#171717',
-                fontFamily: 'Pretendard',
-                fontSize: '12px',
-                fontWeight: '400',
-                height: '26px',
-                lineHeight: 'normal',
-                minWidth: '75px',
-                padding: '0',
-                '& .MuiOutlinedInput-input, & .MuiSelect-select': {
-                    ...heightStyle,
-                    padding: 0
-                },
-                '& .MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input': {
-                    alignItems: 'center',
-                    display: 'flex',
-                    justifyContent: 'flex',
-                    padding: '0 24px 0 8px'
-                },
-                '& .MuiOutlinedInput-notchedOutline': {
-                    ...borderStyle
-                },
-                '&.Mui-focused, &.Mui-focused:hover': {
-                    '& .MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&:hover': {
-                    '& .MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '&.Mui-disabled, &.Mui-disabled:hover': {
-                    '.MuiOutlinedInput-notchedOutline': borderStyle
-                },
-                '& .MuiButtonBase-root': {
-                    ':active': commonBackgroundColor,
-                    ':focus': commonBackgroundColor,
-                    ':hover': commonBackgroundColor,
-                    ...commonBackgroundColor,
-                    paddingLeft: 0,
-                    paddingRight: 0,
-                    right: '8px'
-                }
-            }
-        };
-    });
+/**
+ * Returns consistent fontSize, height, and width styles for icon sizing.
+ *
+ * @param size - The size applied to fontSize, height, and width.
+ * @returns
+ */
+export function iconSize(size: string) {
+    return {
+        fontSize: size,
+        height: size,
+        width: size
+    };
 }

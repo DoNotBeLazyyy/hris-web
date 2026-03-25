@@ -3,6 +3,7 @@ import SpinnerIcon from '@icons/SpinnerIcon';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { ThemeSx } from '@type/common.type';
 import { ButtonSize, ButtonVariant } from '@type/common/style.type';
+import { iconSize, normalizeSx } from '@utils/theme.util';
 import { ReactNode } from 'react';
 
 interface ButtonLoadingProps {
@@ -50,21 +51,15 @@ export default function CommonButton({
     ...props
 }: CommonButtonProps) {
     const { buttonStyle, loadingStyle } = BUTTON_STYLES[variant]; // Button styles
-    const { buttonSize, iconSize } = BUTTON_SIZE_STYLES[size] ; // Button size styles
+    const { buttonSize, buttonIconSize } = BUTTON_SIZE_STYLES[size] ; // Button size styles
     const {
         isLoading = false,
         loadingIcon = <SpinnerIcon className="animate-spin" />
     } = loadingProps ?? {}; // Loading props destructure
-    const resolvedStartIcon = startIcon
-        ? isLoading
-            ? loadingIcon
-            : startIcon
-        : null; // Resolved start icon
-    const resolvedEndIcon = endIcon
-        ? isLoading
-            ? loadingIcon
-            : endIcon
-        : null; // Resolved end icon
+    const resolvedStartIcon = resolveIcon(startIcon); // Resolved start icon
+    const resolvedEndIcon = startIcon
+        ? null
+        : resolveIcon(endIcon); // Resolved end icon
     const resolvedLoadingStyle = isLoading
         ? { '&.Mui-disabled': { ...loadingStyle } }
         : {}; // Button loading style
@@ -75,15 +70,30 @@ export default function CommonButton({
         justifyContent: 'center',
         minWidth: 'unset',
         textTransform: 'none',
-        '& .MuiButton-iconSizeMedium': { margin: 0 },
-        '& .MuiButton-iconSizeMedium svg': {
-            height: iconSize,
-            width: iconSize
+        '& .MuiButton-iconSizeMedium': {
+            margin: 0,
+            '& svg': iconSize(buttonIconSize)
         }
     }; // Base style
+    const isDisabled = disabled || isLoading; // Whether the button should be disabled
+
+    /**
+     * Displays the loading icon when the button is loading, the original icon
+     * otherwise, or null when no icon is provided.
+     *
+     * @param icon - The original icon to render.
+     * @returns
+     */
+    function resolveIcon(icon: ReactNode) {
+        return icon
+            ? (isLoading
+                ? loadingIcon
+                : icon)
+            : null;
+    }
 
     return <Button
-        disabled={disabled || isLoading}
+        disabled={isDisabled}
         disableElevation
         disableFocusRipple
         disableRipple
@@ -94,9 +104,7 @@ export default function CommonButton({
             buttonSize,
             buttonStyle,
             resolvedLoadingStyle,
-            ...(Array.isArray(sx)
-                ? sx
-                : [sx])
+            ...normalizeSx(sx)
         ]}
         {...props}
     />;
