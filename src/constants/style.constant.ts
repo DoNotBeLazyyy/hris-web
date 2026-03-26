@@ -1,4 +1,5 @@
-import { ButtonSizeStyleMap, ButtonVariantStyleMap } from '@type/common/style.type';
+import { CommonInputProps } from '@components/input/CommonInput';
+import { ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, SizeType } from '@type/common/style.type';
 
 // Button variant style presets.
 export const BUTTON_STYLES: ButtonVariantStyleMap = {
@@ -102,7 +103,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '24px',
             p: '4px'
         },
-        iconSize: '16px'
+        buttonIconSize: '16px'
     },
     SMALL: {
         buttonSize: {
@@ -112,7 +113,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '36px',
             p: '8px'
         },
-        iconSize: '20px'
+        buttonIconSize: '20px'
     },
     MEDIUM: {
         buttonSize: {
@@ -122,7 +123,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '48px',
             p: '12px'
         },
-        iconSize: '24px'
+        buttonIconSize: '24px'
     },
     LARGE: {
         buttonSize: {
@@ -132,7 +133,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '56px',
             p: '16px'
         },
-        iconSize: '24px'
+        buttonIconSize: '24px'
     },
     XLARGE: {
         buttonSize: {
@@ -142,6 +143,100 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '68px',
             p: '20px'
         },
-        iconSize: '24px'
+        buttonIconSize: '24px'
     }
+};
+
+// Input common default props
+export const INPUT_DEFAULT_PROPS: Partial<CommonInputProps> = {
+    inputSize: 'LARGE',
+    inputVariant: 'FILLED'
+};
+
+// Input size style presets.
+export const INPUT_SIZE_STYLES: InputSizeStyleMap = {
+    SMALL: {
+        inputSizeStyle: {
+            fontSize: '14px',
+            height: '36px',
+            lineHeight: '20px',
+            padding: '8px'
+        },
+        multilineSizeStyle: {
+            minHeight: '134px',
+            minWidth: '272px'
+        },
+        leftIconSize: '20px',
+        rightIconSize: '16px'
+    },
+    LARGE: {
+        inputSizeStyle: {
+            fontSize: '16px',
+            height: '48px',
+            lineHeight: '24px',
+            padding: '12px 16px'
+        },
+        leftIconSize: '24px',
+        multilineSizeStyle: {
+            minHeight: '170px',
+            minWidth: '264px'
+        },
+        rightIconSize: '20px'
+    }
+} as const;
+
+// Input variant style presets.
+export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
+    OUTLINED: {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#FAFAFA',
+            '&.Mui-disabled': { backgroundColor: '#E4E4E7' },
+            [`
+                &.Mui-focused fieldset,
+                &.Mui-focused:hover fieldset
+            `]: { border: '2px solid #022179' },
+            [`
+                & fieldset,
+                &:hover fieldset,
+                &.Mui-disabled fieldset
+            `]: { border: '1px solid #D4D4D8' },
+            [`
+                & .MuiOutlinedInput-input::placeholder,
+                & .MuiOutlinedInput-root .MuiInputAdornment-positionStart svg,
+                & .MuiOutlinedInput-root .MuiInputAdornment-positionEnd svg
+            `]: { color: '#3F3F46' }
+        }
+    },
+    FILLED: {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#F4F4F5',
+            '&.Mui-focused': { backgroundColor: '#E0EDFD' },
+            '&.Mui-disabled': { backgroundColor: '#E4E4E7' },
+            '& .MuiInputAdornment-positionStart svg': { color: '#011554' },
+            '& .MuiInputAdornment-positionEnd svg': { color: '#18181B' },
+            '& .MuiOutlinedInput-input::placeholder': { color: '#52525B' },
+            [`
+                & fieldset,
+                &:hover fieldset,
+                &.Mui-focused fieldset,
+                &.Mui-disabled fieldset
+            `]: { border: '0' }
+        }
+    }
+};
+
+// Textarea resize cursor style presets.
+export const RESIZE_CURSORS: Record<string, string> = {
+    vertical: 'cursor-ns-resize',
+    block: 'cursor-ns-resize',
+    horizontal: 'cursor-ew-resize',
+    inline: 'cursor-ew-resize',
+    both: 'cursor-se-resize'
+};
+
+// Tooltip size style presets.
+export const sizeStyles: Record<SizeType, { fontSize: number; padding: string; borderRadius: string }> = {
+    sm: { fontSize: 14, padding: '8px 12px', borderRadius: '8px' },
+    md: { fontSize: 16, padding: '10px 16px', borderRadius: '8px' },
+    lg: { fontSize: 16, padding: '8px 10px', borderRadius: '10px' }
 };
