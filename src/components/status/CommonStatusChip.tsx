@@ -1,5 +1,5 @@
+import CircleIcon from '@components/icons/CircleIcon';
 import { STATUS_CHIP_MAP } from '@constants/style.constant';
-import CircleIcon from '@icons/CircleIcon';
 import { Box, BoxProps, Typography } from '@mui/material';
 import { StatusChipType } from '@type/common/style.type';
 
