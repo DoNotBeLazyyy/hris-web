@@ -11,14 +11,25 @@ interface CommonToggleSwitchProps extends Omit<SwitchProps, 'size'> {
     label?: string;
 }
 
+/**
+ * CommonToggleSwitch
+ * A reusable toggle switch component built with MUI that supports
+ * multiple predefined sizes and an optional label.
+ *
+ * Example:
+ * <CommonToggleSwitch
+ *   size="MEDIUM"
+ *   label="Enable Notifications"
+ * />
+ */
 export default function CommonToggleSwitch({
     label,
     size = 'MEDIUM',
     sx,
     ...props
 }: CommonToggleSwitchProps) {
-    const [checked, setChecked] = useState(false);
-    const { width, height, thumbSize, padding } = TOGGLE_SWITCH_STYLE[size];
+    const [checked, setChecked] = useState(false); // Manages the toggle switch checked (on/off) state
+    const { width, height, thumbSize, padding } = TOGGLE_SWITCH_STYLE[size]; // Extract size-based styling values for the switch
     const baseStyle = {
         height: `${height}px`,
         padding: 0,
@@ -52,8 +63,14 @@ export default function CommonToggleSwitch({
             width: `${width}px`
         },
         ...sx
-    };
+    }; // Base styling for the toggle switch, including size, thumb, track, and checked state behavior
 
+    /**
+     * Handles the change event for a checkbox input.
+     * Updates the local `checked` state based on the input's current value.
+     *
+     * @param event - The change event from the HTML input element
+     */
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
         setChecked(event.target.checked);
     }

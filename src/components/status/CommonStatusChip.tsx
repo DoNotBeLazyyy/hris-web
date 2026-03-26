@@ -11,11 +11,21 @@ interface StatusChipProps extends BoxProps {
     iconSize?: number;
 }
 
+/**
+ * CommonStatusChip
+ * A reusable chip component that displays a status with corresponding
+ * color, background, and label.
+ *
+ * Example:
+ * <CommonStatusChip
+ *   status="ACTIVE"
+ * />
+ */
 export default function CommonStatusChip({
     status,
     iconSize = 8
 }: StatusChipProps) {
-    const { backgroundColor, textColor, label } = STATUS_CHIP_MAP[status];
+    const { backgroundColor, textColor, label } = STATUS_CHIP_MAP[status]; // Extract style and label based on the current status
 
     return (
         <Box

@@ -10,12 +10,23 @@ interface CommonStatusBadgeProps extends BoxProps{
     status: StatusBadgeVariant;
 }
 
+/**
+ * CommonStatusBadge
+ * A reusable status badge component built with MUI that displays a label
+ * with a corresponding status style (color, background, and icon).
+ *
+ * Example:
+ * <CommonStatusBadge
+ *   label="Active"
+ *   status="SUCCESS"
+ * />
+ */
 export default function CommonStatusBadge({
     label,
     status = 'INFO',
     sx
 }: CommonStatusBadgeProps) {
-    const config = STATUS_BADGE_STYLE[status];
+    const config = STATUS_BADGE_STYLE[status]; // Retrieve style configuration based on the selected status
 
     return (
         <Box
