@@ -1,5 +1,17 @@
 import { IconSvgProps } from '@type/common.type';
 
+/**
+ * PlusIcon
+ * Renders a plus (+) symbol as an SVG, commonly used for add actions.
+ *
+ * Props:
+ * - height: height of the SVG icon.
+ * - strokeWidth: thickness of the vertical and horizontal lines.
+ * - width: width of the SVG icon.
+ *
+ * @example
+ * <PlusIcon className="h-[24px] w-[24px]" />
+ */
 export default function PlusIcon({
     height = 24,
     strokeWidth = 24,

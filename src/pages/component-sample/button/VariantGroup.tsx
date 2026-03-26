@@ -1,7 +1,7 @@
 import CommonButton from '@components/button/CommonButton';
-import DownloadIcon from '@icons/DownloadIcon';
-import PlusIcon from '@icons/PlusIcon';
-import SaveIcon from '@icons/SaveIcon';
+import DownloadIcon from '@components/icons/DownloadIcon';
+import PlusIcon from '@components/icons/PlusIcon';
+import SaveIcon from '@components/icons/SaveIcon';
 import { BUTTON_SIZES } from '@pages/component-sample/button/constant';
 import DemoRow from '@pages/component-sample/button/DemoRow';
 import SectionCard from '@pages/component-sample/button/SectionCard';
