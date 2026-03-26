@@ -1,40 +1,9 @@
-import { ThemeSx } from '@type/common.type';
-import { SizeType, ButtonSizeStyleMap, ButtonVariantStyleMap, SxElement } from '@type/common/style.type';
-
-export function RadioIcon({ size, color, backgroundColor, dotColor }: {
-    size: number;
-    color: string;
-    backgroundColor: string;
-    dotColor?: string;
-}) {
-    return (
-        <span
-            style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: size,
-                height: size,
-                borderRadius: '50%',
-                border: '2px solid',
-                borderColor: color,
-                backgroundColor,
-                boxSizing: 'border-box'
-            }}
-        >
-            {dotColor && (
-                <span
-                    style={{
-                        width: size * 0.4,
-                        height: size * 0.4,
-                        borderRadius: '50%',
-                        backgroundColor: dotColor
-                    }}
-                />
-            )}
-        </span>
-    );
-}
+import { CommonInputProps, ThemeSx } from '@type/common.type';
+import {
+    ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, SizeType, SxElement,
+    TabContainerStyleParams,
+    TabStyleParams
+} from '@type/common/style.type';
 
 // Button variant style presets.
 export const BUTTON_STYLES: ButtonVariantStyleMap = {
@@ -138,7 +107,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '24px',
             p: '4px'
         },
-        iconSize: '16px'
+        buttonIconSize: '16px'
     },
     SMALL: {
         buttonSize: {
@@ -148,7 +117,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '36px',
             p: '8px'
         },
-        iconSize: '20px'
+        buttonIconSize: '20px'
     },
     MEDIUM: {
         buttonSize: {
@@ -158,7 +127,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '48px',
             p: '12px'
         },
-        iconSize: '24px'
+        buttonIconSize: '24px'
     },
     LARGE: {
         buttonSize: {
@@ -168,7 +137,7 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '56px',
             p: '16px'
         },
-        iconSize: '24px'
+        buttonIconSize: '24px'
     },
     XLARGE: {
         buttonSize: {
@@ -178,29 +147,101 @@ export const BUTTON_SIZE_STYLES: ButtonSizeStyleMap = {
             maxHeight: '68px',
             p: '20px'
         },
-        iconSize: '24px'
+        buttonIconSize: '24px'
     }
 };
 
-// Tooltip size style presets.
-export const sizeStyles: Record<SizeType, { fontSize: number; padding: string; borderRadius: string }> = {
-    sm: { fontSize: 14, padding: '8px 12px', borderRadius: '8px' },
-    md: { fontSize: 16, padding: '10px 16px', borderRadius: '8px' },
-    lg: { fontSize: 16, padding: '8px 10px', borderRadius: '10px' }
+// Input common default props
+export const INPUT_DEFAULT_PROPS: Partial<CommonInputProps> = {
+    inputSize: 'LARGE',
+    inputVariant: 'FILLED'
 };
 
-interface TabContainerStyleParams {
-    // whether the variant is filled
-    isFilled: boolean;
+// Input size style presets.
+export const INPUT_SIZE_STYLES: InputSizeStyleMap = {
+    SMALL: {
+        inputSizeStyle: {
+            fontSize: '14px',
+            height: '36px',
+            lineHeight: '20px',
+            padding: '8px'
+        },
+        multilineSizeStyle: {
+            minHeight: '134px',
+            minWidth: '272px'
+        },
+        leftIconSize: '20px',
+        rightIconSize: '16px'
+    },
+    LARGE: {
+        inputSizeStyle: {
+            fontSize: '16px',
+            height: '48px',
+            lineHeight: '24px',
+            padding: '12px 16px'
+        },
+        leftIconSize: '24px',
+        multilineSizeStyle: {
+            minHeight: '170px',
+            minWidth: '264px'
+        },
+        rightIconSize: '20px'
+    }
+} as const;
 
-    // whether the variant is outlined
-    isOutlined: boolean;
+export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
+    OUTLINED: {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#FAFAFA',
+            '&.Mui-disabled': { backgroundColor: '#E4E4E7' },
+            [`
+                &.Mui-focused fieldset,
+                &.Mui-focused:hover fieldset
+            `]: { border: '2px solid #022179' },
+            [`
+                & fieldset,
+                &:hover fieldset,
+                &.Mui-disabled fieldset
+            `]: { border: '1px solid #D4D4D8' },
+            [`
+                & .MuiOutlinedInput-input::placeholder,
+                & .MuiOutlinedInput-root .MuiInputAdornment-positionStart svg,
+                & .MuiOutlinedInput-root .MuiInputAdornment-positionEnd svg
+            `]: { color: '#3F3F46' }
+        }
+    },
+    FILLED: {
+        '& .MuiOutlinedInput-root': {
+            backgroundColor: '#F4F4F5',
+            '&.Mui-focused': { backgroundColor: '#E0EDFD' },
+            '&.Mui-disabled': { backgroundColor: '#E4E4E7' },
+            '& .MuiInputAdornment-positionStart svg': { color: '#011554' },
+            '& .MuiInputAdornment-positionEnd svg': { color: '#18181B' },
+            '& .MuiOutlinedInput-input::placeholder': { color: '#52525B' },
+            [`
+                & fieldset,
+                &:hover fieldset,
+                &.Mui-focused fieldset,
+                &.Mui-disabled fieldset
+            `]: { border: '0' }
+        }
+    }
+};
 
-    // whether the orientation is vertical
-    isVertical: boolean;
+/**
+ * Spread sx function that takes a sx prop which can be either an object or an array and returns it as an array for consistent usage in MUI components.
+ *
+ * @param sx - the sx prop which can be a single object or an array of objects.
+ * @returns
+ */
+export function spreadSx(sx?: ThemeSx): readonly SxElement[] {
+    if (!sx) {
+        return [];
+    }
 
-    // main color for active state based on variant
-    color: string;
+    return (Array.isArray(sx)
+        ? sx
+        : [sx]) as readonly SxElement[];
 }
 
 /**
@@ -238,21 +279,6 @@ export function tabContainerStyle({
         }
     };
 }
-
-interface TabStyleParams {
-    // isActive tab state
-    isActive: boolean;
-
-    // main color for active state based on variant
-    color: string;
-
-    // text color for active state based on variant
-    textColor: string;
-
-    // variant of the tab menu (filled, outlined, soft)
-    variant: string;
-}
-
 // Tab style function that returns sx styles based on the active state, variant, and color.
 export function tabStyle({
     isActive,
@@ -310,18 +336,9 @@ export function tabStyle({
     };
 }
 
-/**
- * Spread sx function that takes a sx prop which can be either an object or an array and returns it as an array for consistent usage in MUI components.
- *
- * @param sx - the sx prop which can be a single object or an array of objects.
- * @returns
- */
-export function spreadSx(sx?: ThemeSx): readonly SxElement[] {
-    if (!sx) {
-        return [];
-    }
-
-    return (Array.isArray(sx)
-        ? sx
-        : [sx]) as readonly SxElement[];
-}
+// Tooltip size style presets.
+export const sizeStyles: Record<SizeType, { fontSize: number; padding: string; borderRadius: string }> = {
+    sm: { fontSize: 14, padding: '8px 12px', borderRadius: '8px' },
+    md: { fontSize: 16, padding: '10px 16px', borderRadius: '8px' },
+    lg: { fontSize: 16, padding: '8px 10px', borderRadius: '10px' }
+};

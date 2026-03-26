@@ -1,9 +1,49 @@
-import { RadioIcon, spreadSx } from '@constants/style.constant';
+import { spreadSx } from '@constants/style.constant';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio, { RadioProps } from '@mui/material/Radio';
 import { ThemeSx } from '@type/common.type';
 import { CommonRadioButtonSize } from '@type/common/style.type';
 import { ReactNode } from 'react';
+
+/**
+ * RadioIcon is a helper component that renders a custom radio button icon.
+ * @param param0 - An object containing the size, color, backgroundColor.
+ * @returns
+ */
+export function RadioIcon({ size, color, backgroundColor, dotColor }: {
+    size: number;
+    color: string;
+    backgroundColor: string;
+    dotColor?: string;
+}) {
+    return (
+        <span
+            style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: size,
+                height: size,
+                borderRadius: '50%',
+                border: '2px solid',
+                borderColor: color,
+                backgroundColor,
+                boxSizing: 'border-box'
+            }}
+        >
+            {dotColor && (
+                <span
+                    style={{
+                        width: size * 0.4,
+                        height: size * 0.4,
+                        borderRadius: '50%',
+                        backgroundColor: dotColor
+                    }}
+                />
+            )}
+        </span>
+    );
+}
 
 interface CommonRadioButtonProps extends Omit<RadioProps, CommonRadioButtonSize> {
     // whether the radio button is checked (controlled) or not.
