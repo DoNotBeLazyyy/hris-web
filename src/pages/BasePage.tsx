@@ -1,5 +1,5 @@
-import CommonStatusBadge from '@components/badge/CommonStatusBadge';
-import CommonStatusChip from '@components/badge/CommonStatusChip';
+import CommonStatusBadge from '@components/status/CommonStatusBadge';
+import CommonStatusChip from '@components/status/CommonStatusChip';
 import CommonToggleSwitch from '@components/switch/CommonToggleSwitch';
 import { Outlet } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ export default function BasePage() {
                 }}
             />
             <CommonStatusBadge
-                label="Status"
+                label="kahit"
                 status="INFO"
             />
             <CommonStatusBadge label="Status" status="INFO" />

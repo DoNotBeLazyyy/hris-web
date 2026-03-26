@@ -1,18 +1,21 @@
-import { STATUS_CONFIG } from '@constants/style.constant';
+import { STATUS_BADGE_STYLE } from '@constants/style.constant';
 import { Box, BoxProps, Typography } from '@mui/material';
 import { StatusBadgeVariant } from '@type/common/style.type';
 
 interface CommonStatusBadgeProps extends BoxProps{
-    label?: string;
-    status?: StatusBadgeVariant;
+    // Text displayed inside the status badge
+    label: string;
+
+    // Determines the badge style and color
+    status: StatusBadgeVariant;
 }
 
 export default function CommonStatusBadge({
-    label = 'Status',
+    label,
     status = 'INFO',
     sx
 }: CommonStatusBadgeProps) {
-    const config = STATUS_CONFIG[status];
+    const config = STATUS_BADGE_STYLE[status];
 
     return (
         <Box
@@ -23,7 +26,9 @@ export default function CommonStatusBadge({
                 display: 'inline-flex',
                 justifyContent: 'center',
                 gap: '4px',
-                width: '63px',
+                minWidth: '63px',
+                width: 'full',
+                paddingX: '5px',
                 height: '18px',
                 borderRadius: '4px',
                 backgroundColor: config.backgroundColor,

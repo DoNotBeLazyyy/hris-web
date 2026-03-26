@@ -1,55 +1,33 @@
+import { TOGGLE_SWITCH_STYLE } from '@constants/style.constant';
 import { FormControlLabel, Switch, SwitchProps } from '@mui/material';
+import { ToggleSwitchSize } from '@type/common/style.type';
 import React, { useState } from 'react';
 
-type SwitchSize = 'SMALL' | 'MEDIUM' | 'LARGE';
-
 interface CommonToggleSwitchProps extends Omit<SwitchProps, 'size'> {
-    size?: SwitchSize;
+    // Optional: defines the size of the switch (SMALL, MEDIUM, LARGE)
+    size?: ToggleSwitchSize;
+
+    // Optional: text label displayed next to the switch
     label?: string;
 }
 
 export default function CommonToggleSwitch({
-    size = 'MEDIUM',
     label,
+    size = 'MEDIUM',
     sx,
     ...props
 }: CommonToggleSwitchProps) {
     const [checked, setChecked] = useState(false);
-    const sizeConfig: Record<SwitchSize, {
-        width: number;
-        height: number;
-        thumb: number;
-        padding: number;
-    }> = {
-        SMALL: {
-            width: 32,
-            height: 18,
-            thumb: 14,
-            padding: 2
-        },
-        MEDIUM: {
-            width: 44,
-            height: 24,
-            thumb: 20,
-            padding: 2
-        },
-        LARGE: {
-            width: 60,
-            height: 32,
-            thumb: 26,
-            padding: 3
-        }
-    };
-    const { width, height, thumb, padding } = sizeConfig[size];
+    const { width, height, thumbSize, padding } = TOGGLE_SWITCH_STYLE[size];
     const baseStyle = {
-        width: `${width}px`,
         height: `${height}px`,
         padding: 0,
+        width: `${width}px`,
         '& .MuiSwitch-switchBase': {
             padding: `${padding}px`,
             '&.Mui-checked': {
                 color: '#ffffff',
-                transform: `translateX(${width - thumb - padding * 2}px)`,
+                transform: `translateX(${width - thumbSize - padding * 2}px)`,
                 '& + .MuiSwitch-track': {
                     backgroundColor: '#022179',
                     opacity: 1
@@ -62,16 +40,16 @@ export default function CommonToggleSwitch({
         '& .MuiSwitch-thumb': {
             backgroundColor: '#ffffff',
             boxShadow: 'none',
-            height: `${thumb}px`,
-            width: `${thumb}px`,
-            top: `calc(50% - ${thumb / 2}px)`
+            height: `${thumbSize}px`,
+            top: `calc(50% - ${thumbSize / 2}px)`,
+            width: `${thumbSize}px`
         },
         '& .MuiSwitch-track': {
             backgroundColor: '#D4D4D8',
             borderRadius: `${height / 2}px`,
             height: `${height}px`,
-            width: `${width}px`,
-            opacity: 1
+            opacity: 1,
+            width: `${width}px`
         },
         ...sx
     };

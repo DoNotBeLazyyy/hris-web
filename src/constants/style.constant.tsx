@@ -4,7 +4,11 @@ import WarningIcon from '@icons/WarningIcon';
 import XCircleIcon from '@icons/XCircleIcon';
 import { CommonInputProps } from '@type/common.type';
 import {
-    ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, StatusBadgeVariantMap
+    ButtonSizeStyleMap,
+    ButtonVariantStyleMap,
+    InputSizeStyleMap, InputVariantStyleMap, StatusBadgeVariantMap,
+    StatusChipTypeMap,
+    ToggleSwitchStyleMap
 } from '@type/common/style.type';
 
 // Button variant style presets.
@@ -230,25 +234,72 @@ export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
     }
 };
 
-export const STATUS_CONFIG: StatusBadgeVariantMap = {
+// Mapping of chip status to its UI properties
+export const STATUS_BADGE_STYLE: StatusBadgeVariantMap = {
     INFO: {
-        color: '#3B82F6',
         backgroundColor: '#DBEAFE',
+        color: '#3B82F6',
         icon: <CircleIcon />
     },
     SUCCESS: {
-        color: '#22C55E',
         backgroundColor: '#DCFCE7',
+        color: '#22C55E',
         icon: <CheckIcon />
     },
     WARNING: {
-        color: '#F59E0B',
         backgroundColor: '#FEF3C7',
+        color: '#F59E0B',
         icon: <WarningIcon />
     },
     ERROR: {
-        color: '#EF4444',
         backgroundColor: '#FEE2E2',
+        color: '#EF4444',
         icon: <XCircleIcon />
+    }
+};
+
+// Configuration for different switch sizes
+export const TOGGLE_SWITCH_STYLE: ToggleSwitchStyleMap = {
+    SMALL: {
+        height: 18,
+        padding: 2,
+        thumbSize: 14,
+        width: 32
+    },
+    MEDIUM: {
+        height: 24,
+        padding: 2,
+        thumbSize: 20,
+        width: 44
+    },
+    LARGE: {
+        height: 32,
+        padding: 3,
+        thumbSize: 26,
+        width: 60
+    }
+};
+
+// Mapping of chip status to its UI properties
+export const STATUS_CHIP_MAP: StatusChipTypeMap = {
+    ACTIVE:   {
+        backgroundColor: '#CEF6DF',
+        textColor: '#2DCC70',
+        label: 'Active'
+    },
+    PRESENT:  {
+        backgroundColor: '#CEF6DF',
+        textColor: '#2DCC70',
+        label: 'Present'
+    },
+    INACTIVE: {
+        backgroundColor: '#E4E4E7',
+        textColor: '#71717A',
+        label: 'Inactive'
+    },
+    ABSENT:   {
+        backgroundColor: '#E4E4E7',
+        textColor: '#71717A',
+        label: 'Absent'
     }
 };
