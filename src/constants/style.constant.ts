@@ -1,7 +1,5 @@
 import { CommonInputProps } from '@components/input/CommonInput';
-import {
-    ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, SizeType
-} from '@type/common/style.type';
+import { ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, SizeType } from '@type/common/style.type';
 
 // Button variant style presets.
 export const BUTTON_STYLES: ButtonVariantStyleMap = {
