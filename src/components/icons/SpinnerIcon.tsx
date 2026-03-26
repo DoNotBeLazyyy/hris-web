@@ -1,5 +1,17 @@
 import { IconSvgProps } from '@type/common.type';
 
+/**
+ * SpinnerIcon
+ * Renders an incomplete circular path as an SVG, used for loading indicators.
+ *
+ * Props:
+ * - height: height of the SVG icon.
+ * - strokeWidth: thickness of the spinner track.
+ * - width: width of the SVG icon.
+ *
+ * @example
+ * <SpinnerIcon className="animate-spin h-[24px] w-[24px]" />
+ */
 export default function SpinnerIcon({
     height = 24,
     strokeWidth = 24,
