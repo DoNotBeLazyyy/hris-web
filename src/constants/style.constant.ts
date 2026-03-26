@@ -1,4 +1,5 @@
 import { CommonInputProps } from '@components/input/CommonInput';
+import { RecordString } from '@type/common.type';
 import {
     ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, SizeType
 } from '@type/common/style.type';
@@ -228,7 +229,7 @@ export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
 };
 
 // Textarea resize cursor style presets.
-export const RESIZE_CURSORS: Record<string, string> = {
+export const RESIZE_CURSORS: RecordString = {
     vertical: 'cursor-ns-resize',
     block: 'cursor-ns-resize',
     horizontal: 'cursor-ew-resize',
