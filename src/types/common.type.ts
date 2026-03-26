@@ -1,15 +1,6 @@
 import { SxProps, Theme } from '@mui/material/styles';
 import React from 'react';
 
-// SizeType used for defining size.
-export type SizeType = 'sm' | 'md' | 'lg';
-
-// VariantType used for defining variant.
-export type VariantType = 'filled' | 'outlined';
-
-// SizeType used for defining size of CommonRadioButton.
-export type CommonRadioButtonSize = 'size' | 'icon' | 'checkedIcon';
-
 // event type for input change events.
 export type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
 
@@ -23,3 +14,8 @@ export type IconSvgProps = React.SVGProps<SVGSVGElement>;
 
 // MUI props
 export type ThemeSx = SxProps<Theme>;
+
+// String type
+export type StringNum = string | number;
+
+export type RecordStringUnknown = Record<string, unknown>

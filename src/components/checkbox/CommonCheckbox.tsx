@@ -43,6 +43,32 @@ export default function CommonCheckbox({
     ...props
 }: CommonCheckboxProps) {
     const color = customColor ?? '#1B2A6B'; // default custom color if not provided
+    const activeColor = disabled
+        ? undefined
+        : color; // use custom color only if not disabled
+    const checkboxSx = {
+        color: disabled
+            ? undefined
+            : '#D5D5D5',
+        padding: 0,
+        ...(iconSize && {
+            '& .MuiSvgIcon-root': {
+                fontSize: iconSize
+            }
+        }),
+        '&:hover, &:active, &:focus, &.Mui-focusVisible': {
+            backgroundColor: 'transparent !important'
+        },
+        '& .MuiTouchRipple-root': {
+            display: 'none'
+        },
+        '&.Mui-checked': {
+            color: activeColor
+        },
+        '&.MuiCheckbox-indeterminate': {
+            color: activeColor
+        }
+    }; // sx styles for the checkbox based on customColor, disabled state, and iconSize
 
     return (
         <FormControlLabel
@@ -53,31 +79,7 @@ export default function CommonCheckbox({
                     disabled={disabled}
                     {...props}
                     sx={{
-                        color: disabled
-                            ? undefined
-                            : '#D5D5D5',
-                        padding: 0,
-                        ...(iconSize && {
-                            '& .MuiSvgIcon-root': {
-                                fontSize: iconSize
-                            }
-                        }),
-                        '&:hover, &:active, &:focus, &.Mui-focusVisible': {
-                            backgroundColor: 'transparent !important'
-                        },
-                        '& .MuiTouchRipple-root': {
-                            display: 'none'
-                        },
-                        '&.Mui-checked': {
-                            color: disabled
-                                ? undefined
-                                : color
-                        },
-                        '&.MuiCheckbox-indeterminate': {
-                            color: disabled
-                                ? undefined
-                                : color
-                        },
+                        ...checkboxSx,
                         ...sx
                     }}
                 />

@@ -1,21 +1,15 @@
-import { ReactElement, ReactNode } from 'react';
+import { sizeStyles } from '@constants/style.constant';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import { SizeType, VariantType, TooltipSlotProps } from '@type/common.type';
+import { RecordStringUnknown, TooltipSlotProps } from '@type/common.type';
+import { SizeType, TooltipVariant, VariantType } from '@type/common/style.type';
+import { ReactElement, ReactNode } from 'react';
 
-const sizeStyles: Record<SizeType, { fontSize: number; padding: string; borderRadius: string }> = {
-    sm: { fontSize: 14, padding: '8px 12px', borderRadius: '8px' },
-    md: { fontSize: 16, padding: '10px 16px', borderRadius: '8px' },
-    lg: { fontSize: 16, padding: '8px 10px', borderRadius: '10px' }
-};
 interface CommonTooltipProps extends Omit<TooltipProps, TooltipSlotProps> {
     // whether to show the arrow.
     arrow?: boolean;
 
     // custom background color for the tooltip.
     customColor?: string;
-
-    // custom font size in pixels (overrides size preset).
-    fontSize?: number;
 
     // the element that triggers the tooltip.
     children: ReactElement;
@@ -50,7 +44,6 @@ export default function CommonTooltip({
     arrow,
     children,
     customColor,
-    fontSize,
     placement,
     size,
     slotProps,
@@ -62,6 +55,34 @@ export default function CommonTooltip({
     const preset = sizeStyles[size ?? 'sm']; // get size preset based on tooltipSize
     const isFilled = (variant ?? 'filled') === 'filled'; // determine if the tooltip is filled variant
     const color = '#FFFFFF'; // text color for filled variant
+    const tooltipSx = {
+        backgroundColor: isFilled
+            ? tooltipColor
+            : color,
+        color: isFilled
+            ? color
+            : tooltipColor,
+        fontSize: preset.fontSize,
+        fontWeight: 600,
+        padding: preset.padding,
+        borderRadius: preset.borderRadius,
+        border: isFilled
+            ? 'none'
+            : `1.5px solid ${tooltipColor}`,
+        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
+        textAlign: 'center',
+        maxWidth: 'none'
+    }; // sx styles for the tooltip based on variant and size
+
+    /**
+     * Helper function to extract sx styles from slotProps for tooltip and arrow.
+     *
+     * @param key - 'tooltip' or 'arrow' to specify which slot's sx to extract.
+     * @returns
+     */
+    function sx(key: TooltipVariant) {
+        return (slotProps?.[key] as RecordStringUnknown)?.sx as RecordStringUnknown;
+    }
 
     return (
         <Tooltip
@@ -74,23 +95,8 @@ export default function CommonTooltip({
                 tooltip: {
                     ...slotProps?.tooltip,
                     sx: {
-                        backgroundColor: isFilled
-                            ? tooltipColor
-                            : color,
-                        color: isFilled
-                            ? color
-                            : tooltipColor,
-                        fontSize: fontSize ?? preset.fontSize,
-                        fontWeight: 600,
-                        padding: preset.padding,
-                        borderRadius: preset.borderRadius,
-                        border: isFilled
-                            ? 'none'
-                            : `1.5px solid ${tooltipColor}`,
-                        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.15)',
-                        textAlign: 'center',
-                        maxWidth: 'none',
-                        ...((slotProps?.tooltip as Record<string, unknown>)?.sx as Record<string, unknown>)
+                        ...tooltipSx,
+                        ...sx('tooltip')
                     }
                 },
                 arrow: {
@@ -105,7 +111,7 @@ export default function CommonTooltip({
                                 ? 'none'
                                 : `1.5px solid ${tooltipColor}`
                         },
-                        ...((slotProps?.arrow as Record<string, unknown>)?.sx as Record<string, unknown>)
+                        ...sx('arrow')
                     }
                 }
             }}

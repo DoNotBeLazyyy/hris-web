@@ -1,8 +1,9 @@
-import { ReactNode } from 'react';
+import { RadioIcon, spreadSx } from '@constants/style.constant';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio, { RadioProps } from '@mui/material/Radio';
-import { SxProps, Theme } from '@mui/material/styles';
-import { CommonRadioButtonSize } from '@type/common.type';
+import { ThemeSx } from '@type/common.type';
+import { CommonRadioButtonSize } from '@type/common/style.type';
+import { ReactNode } from 'react';
 
 interface CommonRadioButtonProps extends Omit<RadioProps, CommonRadioButtonSize> {
     // whether the radio button is checked (controlled) or not.
@@ -21,46 +22,8 @@ interface CommonRadioButtonProps extends Omit<RadioProps, CommonRadioButtonSize>
     label?: ReactNode;
 
     // custom sx styles for the radio button.
-    radioSx?: SxProps<Theme>;
+    radioSx?: ThemeSx;
 
-    // value of the radio button, sent to the onChange handler.
-    value?: string | number;
-
-}
-
-function RadioIcon({ size, color, backgroundColor, dotColor }: {
-    size: number;
-    color: string;
-    backgroundColor: string;
-    dotColor?: string;
-}) {
-    return (
-        <span
-            style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: size,
-                height: size,
-                borderRadius: '50%',
-                border: '2px solid',
-                borderColor: color,
-                backgroundColor,
-                boxSizing: 'border-box'
-            }}
-        >
-            {dotColor && (
-                <span
-                    style={{
-                        width: size * 0.4,
-                        height: size * 0.4,
-                        borderRadius: '50%',
-                        backgroundColor: dotColor
-                    }}
-                />
-            )}
-        </span>
-    );
 }
 
 /**
@@ -86,11 +49,10 @@ export default function CommonRadioButton({
     iconSize,
     label,
     radioSx,
-    value,
     ...props
 }: CommonRadioButtonProps) {
-    const color = customColor ?? '#1B2A6B';
-    const size = iconSize ?? 24;
+    const color = customColor ?? '#1B2A6B'; // default custom color if not provided
+    const size = iconSize ?? 24; // default icon size if not provided
     const colorLightGray = '#BDBDBD'; // light gray color for disabled state
     const fillColor = disabled
         ? colorLightGray
@@ -140,13 +102,9 @@ export default function CommonRadioButton({
                                 backgroundColor: 'transparent'
                             }
                         },
-                        ...(Array.isArray(radioSx)
-                            ? radioSx
-                            : radioSx
-                                ? [radioSx]
-                                : [])
+                        ...spreadSx(radioSx)
                     ]}
-                    value={value}
+                    value={props.value}
                     {...props}
                 />
             }
