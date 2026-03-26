@@ -1,7 +1,8 @@
 import { TOGGLE_SWITCH_STYLE } from '@constants/style.constant';
 import { FormControlLabel, Switch, SwitchProps } from '@mui/material';
+import { InputChangeEvent } from '@type/common.type';
 import { ToggleSwitchSize } from '@type/common/style.type';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface CommonToggleSwitchProps extends Omit<SwitchProps, 'size'> {
     // Optional: defines the size of the switch (SMALL, MEDIUM, LARGE)
@@ -44,9 +45,7 @@ export default function CommonToggleSwitch({
                     opacity: 1
                 }
             },
-            '&:hover': {
-                backgroundColor: 'transparent'
-            }
+            '&:hover': { backgroundColor: 'transparent' }
         },
         '& .MuiSwitch-thumb': {
             backgroundColor: '#ffffff',
@@ -71,7 +70,7 @@ export default function CommonToggleSwitch({
      *
      * @param event - The change event from the HTML input element
      */
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function handleChange(event: InputChangeEvent) {
         setChecked(event.target.checked);
     }
 
@@ -89,10 +88,8 @@ export default function CommonToggleSwitch({
             sx={{
                 gap: '16px',
                 margin: 0,
-                '& .MuiFormControlLabel-label': {
-                    marginLeft: 0
-                }
+                '& .MuiFormControlLabel-label': { marginLeft: 0 }
             }}
         />
     );
-}
+};

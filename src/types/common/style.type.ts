@@ -1,5 +1,5 @@
-import { ThemeSx } from '@type/common.type';
-import { CSSProperties, ReactNode } from 'react';
+import { IconSvgProps, ThemeSx } from '@type/common.type';
+import { CSSProperties, FC } from 'react';
 
 // Button style props
 export type ButtonVariant = 'PRIMARY' | 'SECONDARY' | 'OUTLINE' | 'GHOST';
@@ -38,7 +38,7 @@ interface StatusBadgeTypeConfig {
     color: string;
 
     // Icon displayed alongside the label
-    icon: ReactNode;
+    icon: FC<IconSvgProps>;
 }
 // Tab menu variant type
 export type TabMenuVariant = 'filled' | 'outlined' | 'soft';

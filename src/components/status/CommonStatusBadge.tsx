@@ -1,64 +1,63 @@
 import { STATUS_BADGE_STYLE } from '@constants/style.constant';
-import { Box, BoxProps, Typography } from '@mui/material';
-import { StatusBadgeVariant } from '@type/common/style.type';
+import { HTMLDivAttributes, IconSvgProps } from '@type/common.type';
+import { classMerge } from '@utils/css.util';
 
-interface CommonStatusBadgeProps extends BoxProps{
-    // Text displayed inside the status badge
+interface CommonStatusBadgeProps extends HTMLDivAttributes {
+    // Customize the badge icon
+    iconProps?: IconSvgProps;
+
+    // The text displayed inside the status badge
     label: string;
 
-    // Determines the badge style and color
-    status: StatusBadgeVariant;
+    // Determine the badge style and color from STATUS_BADGE_STYLE
+    status?: keyof typeof STATUS_BADGE_STYLE;
 }
 
 /**
  * CommonStatusBadge
- * A reusable status badge component built with MUI that displays a label
- * with a corresponding status style (color, background, and icon).
  *
- * Example:
+ * A reusable status badge component that displays a label with an optional icon.
+ * The appearance (color, background, and icon) is determined by the `status` prop.
+ *
+ * @example
  * <CommonStatusBadge
+ *   iconProps={{
+ *      height: 12,
+ *      width: 12
+ *   }}
  *   label="Active"
  *   status="SUCCESS"
  * />
  */
 export default function CommonStatusBadge({
-    label,
+    className,
     status = 'INFO',
-    sx
+    label,
+    iconProps,
+    ...props
 }: CommonStatusBadgeProps) {
-    const config = STATUS_BADGE_STYLE[status]; // Retrieve style configuration based on the selected status
+    const { color, backgroundColor, icon } = STATUS_BADGE_STYLE[status]; // Destructure the style configuration for the current status
+    const Icon = icon; // Assign the icon component from the style config to a local variable for rendering
 
     return (
-        <Box
-            sx={{
-                alignItems: 'center',
-                borderWidth: '1px',
-                borderColor: config.color,
-                display: 'inline-flex',
-                justifyContent: 'center',
-                gap: '4px',
-                minWidth: '63px',
-                width: 'full',
-                paddingX: '5px',
-                height: '18px',
-                borderRadius: '4px',
-                backgroundColor: config.backgroundColor,
-                color: config.color,
-                fontWeight: 600,
-                lineHeight: 1,
-                ...sx
+        <div
+            className={
+                classMerge(
+                    'border-[1px] font-[600] gap-[4px] h-[16px] inline-flex items-center justify-center leading-[16px] min-w-[63px] px-[6px] rounded-[4px]',
+                    className
+                )
+            }
+            style={{
+                borderColor: color,
+                backgroundColor,
+                color
             }}
+            {...props}
         >
-            {config.icon}
-            <Typography
-                sx={{
-                    fontSize: '12px',
-                    fontWeight: 700,
-                    color: 'inherit'
-                }}
-            >
+            <Icon {...iconProps} />
+            <span className="font-[700] text-[12px]">
                 {label}
-            </Typography>
-        </Box>
+            </span>
+        </div>
     );
 }

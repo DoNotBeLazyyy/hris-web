@@ -1,61 +1,40 @@
-import CircleIcon from '@components/icons/CircleIcon';
+import CommonStatusBadge from '@components/status/CommonStatusBadge';
 import { STATUS_CHIP_MAP } from '@constants/style.constant';
-import { Box, BoxProps, Typography } from '@mui/material';
-import { StatusChipType } from '@type/common/style.type';
 
-interface StatusChipProps extends BoxProps {
-    // Defines the status type used to determine color and label
-    status: StatusChipType;
-
-    // Size of the status icon
-    iconSize?: number;
+interface StatusChipProps {
+    // Determines the chip style
+    status: keyof typeof STATUS_CHIP_MAP;
 }
 
 /**
  * CommonStatusChip
- * A reusable chip component that displays a status with corresponding
- * color, background, and label.
  *
- * Example:
+ * A small status indicator chip.
+ *
+ * @example
  * <CommonStatusChip
- *   status="ACTIVE"
- * />
+ *      status="positive"
+ *      iconSize={8}
+ *  />
  */
 export default function CommonStatusChip({
-    status,
-    iconSize = 8
+    status
 }: StatusChipProps) {
-    const { backgroundColor, textColor, label } = STATUS_CHIP_MAP[status]; // Extract style and label based on the current status
+    const { backgroundColor, textColor, label } = STATUS_CHIP_MAP[status]; // Destructure the style and label for the current status
 
     return (
-        <Box
-            sx={{
-                alignItems: 'center',
-                backgroundColor,
-                borderRadius: '99px',
-                display: 'inline-flex',
-                height: 18,
-                padding: '0 8px'
+        <CommonStatusBadge
+            className="border-[0px] font-[600] gap-[4px] h-[16px] inline-flex items-center leading-[16px] px-[8px] rounded-[9999px]"
+            iconProps={{
+                height: 6,
+                width: 6
             }}
-        >
-            <CircleIcon
-                height={iconSize}
-                style={{
-                    color: textColor,
-                    marginRight: 4
-                }}
-                width={iconSize}
-            />
-            <Typography
-                sx={{
-                    color: textColor,
-                    fontSize: 12,
-                    fontWeight: 600,
-                    lineHeight: '18px'
-                }}
-            >
-                {label}
-            </Typography>
-        </Box>
+            label={label}
+            status="INFO"
+            style={{
+                backgroundColor,
+                color: textColor
+            }}
+        />
     );
 }

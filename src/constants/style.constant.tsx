@@ -243,22 +243,22 @@ export const STATUS_BADGE_STYLE: StatusBadgeVariantMap = {
     INFO: {
         backgroundColor: '#DBEAFE',
         color: '#3B82F6',
-        icon: <CircleIcon />
+        icon: CircleIcon
     },
     SUCCESS: {
         backgroundColor: '#DCFCE7',
         color: '#22C55E',
-        icon: <CheckIcon />
+        icon: CheckIcon
     },
     WARNING: {
         backgroundColor: '#FEF3C7',
         color: '#F59E0B',
-        icon: <WarningIcon />
+        icon: WarningIcon
     },
     ERROR: {
         backgroundColor: '#FEE2E2',
         color: '#EF4444',
-        icon: <XCircleIcon />
+        icon: XCircleIcon
     }
 };
 
