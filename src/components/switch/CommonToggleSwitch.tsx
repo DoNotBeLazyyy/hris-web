@@ -92,10 +92,10 @@ export default function CommonToggleSwitch({
             }
             label={label}
             sx={{
-                gap: '16px', // 👈 this controls spacing
-                margin: 0, // optional: removes default margin
+                gap: '16px',
+                margin: 0,
                 '& .MuiFormControlLabel-label': {
-                    marginLeft: 0 // ensure no extra spacing
+                    marginLeft: 0
                 }
             }}
         />
