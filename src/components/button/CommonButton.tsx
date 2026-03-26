@@ -1,5 +1,5 @@
+import SpinnerIcon from '@components/icons/SpinnerIcon';
 import { BUTTON_SIZE_STYLES, BUTTON_STYLES } from '@constants/style.constant';
-import SpinnerIcon from '@icons/SpinnerIcon';
 import Button, { ButtonProps } from '@mui/material/Button';
 import { ThemeSx } from '@type/common.type';
 import { ButtonSize, ButtonVariant } from '@type/common/style.type';
@@ -27,11 +27,12 @@ interface CommonButtonProps extends Omit<ButtonProps, 'size' | 'variant'> {
 
 /**
  * CommonButton
+ *
  * A customizable MUI button component with predefined size and variant styles.
  * Use only one icon position at a time. Provide either `startIcon` or `endIcon`,
  * but do not use both simultaneously.
  *
- * Example:
+ * @example
  * <CommonButton
  *  loadingProps={loadingProps}
  *  size="XSMALL"
@@ -74,7 +75,7 @@ export default function CommonButton({
             margin: 0,
             '& svg': iconSize(buttonIconSize)
         }
-    }; // Base style
+    }; // Button base style
     const isDisabled = disabled || isLoading; // Whether the button should be disabled
 
     /**

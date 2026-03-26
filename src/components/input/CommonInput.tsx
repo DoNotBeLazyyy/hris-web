@@ -1,26 +1,21 @@
 import { INPUT_DEFAULT_PROPS } from '@constants/style.constant';
-import { CommonInputProps } from '@type/common.type';
+import { TextFieldProps } from '@mui/material';
+import { FieldStyleProps } from '@type/common/style.type';
 import { StyledTextField } from '@utils/theme.util';
 import { forwardRef } from 'react';
 
+export type CommonInputProps = Omit<TextFieldProps, 'size' | 'variant'> & FieldStyleProps;
+
 /**
  * CommonInput
+ *
  * A customizable styled single-line text input built on MUI TextField,
  * with custom size and variant support.
  *
- * Example:
+ * @example
  * <CommonInput
  *  inputVariant="OUTLINED"
  *  placeholder="Search"
- *  slotProps={{
- *      input: {
- *          startAdornment: (
- *              <InputAdornment position="start">
- *                  <SearchIcon fontSize="small" />
- *              </InputAdornment>
- *          )
- *      }
- *  }}
  * />
  */
 const CommonInput = forwardRef<HTMLInputElement, CommonInputProps>(({ ...props }, ref) => {

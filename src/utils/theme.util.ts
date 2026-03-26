@@ -2,8 +2,8 @@ import { INPUT_SIZE_STYLES, INPUT_VARIANT_STYLES } from '@constants/style.consta
 import { TextField } from '@mui/material';
 import { CSSObject, styled } from '@mui/material/styles';
 import deepmerge from '@mui/utils/deepmerge';
-import { ThemeSx } from '@type/common.type';
-import { FieldStyleProps } from '@type/common/style.type';
+import { RecordStringUnknown, ThemeSx } from '@type/common.type';
+import { FieldStyleProps, SxElement, TabContainerStyleParams, TabStyleParams } from '@type/common/style.type';
 import { ComponentProps, ComponentType } from 'react';
 
 // MUI TextField enhanced with custom size and variant styling via fieldStyled
@@ -109,5 +109,113 @@ export function iconSize(size: string) {
         fontSize: size,
         height: size,
         width: size
+    };
+}
+
+/**
+ * Spread sx function that takes a sx prop which can be either an object or an array and returns it as an array for consistent usage in MUI components.
+ *
+ * @param sx - the sx prop which can be a single object or an array of objects.
+ * @returns
+ */
+export function spreadSx(sx?: ThemeSx): readonly SxElement[] {
+    if (!sx) {
+        return [];
+    }
+
+    return (Array.isArray(sx)
+        ? sx
+        : [sx]) as readonly SxElement[];
+}
+
+/**
+ * Tab container style function that returns sx styles based on the variant, orientation, and color.
+ *
+ * @param param0 - object containing isFilled, isOutlined, isVertical, and color properties to determine the styles.
+ * @returns
+ */
+export function tabContainerStyle({
+    isFilled,
+    isOutlined,
+    isVertical,
+    color
+}: TabContainerStyleParams): RecordStringUnknown {
+    if (isOutlined) {
+        return {
+            ...(isVertical && { borderRight: '2px solid #E5E7EB' }),
+            '& .MuiTabs-indicator': {
+                backgroundColor: color,
+                ...(isVertical
+                    ? { width: '2px' }
+                    : { height: '2px' }
+                )
+            }
+        };
+    }
+
+    return {
+        ...(isFilled && { backgroundColor: '#F3F4F6' }),
+        borderRadius: '10px',
+        padding: '4px',
+        ...(isVertical && { gap: '4px' }),
+        '& .MuiTabs-indicator': {
+            display: 'none'
+        }
+    };
+}
+// Tab style function that returns sx styles based on the active state, variant, and color.
+export function tabStyle({
+    isActive,
+    color,
+    textColor,
+    variant
+}: TabStyleParams): RecordStringUnknown {
+    const isFilled = variant === 'filled';
+    const isOutlined = variant === 'outlined';
+
+    return {
+        textTransform: 'none',
+        minHeight: 'unset',
+        minWidth: 'unset',
+        padding: '7px 10px',
+        fontSize: '13px',
+        fontWeight: 700,
+        transition: 'all 0.2s ease',
+        borderRadius: isOutlined
+            ? 0
+            : '8px',
+        color: textColor,
+        '&.Mui-selected': {
+            color: isFilled
+                ? '#FFFFFF'
+                : isOutlined
+                    ? color
+                    : '#3F3F46'
+        },
+        backgroundColor: isActive
+            ? (isFilled
+                ? color
+                : (isOutlined
+                    ? 'transparent'
+                    : '#F4F4F5'))
+            : 'transparent',
+        boxShadow: isActive && variant === 'soft'
+            ? '0px 1px 3px rgba(0, 0, 0, 0.1)'
+            : 'none',
+        '& .MuiTab-iconWrapper': {
+            color: isActive
+                ? '#FFFFFF'
+                : textColor,
+            marginRight: '6px'
+        },
+        '&:hover': {
+            backgroundColor: isActive
+                ? (isFilled
+                    ? color
+                    : (isOutlined
+                        ? 'transparent'
+                        : '#FFFFFF'))
+                : 'rgba(0, 0, 0, 0.04)'
+        }
     };
 }

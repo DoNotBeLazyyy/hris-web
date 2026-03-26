@@ -1,12 +1,15 @@
-import CheckIcon from '@icons/CheckIcon';
-import CircleIcon from '@icons/CircleIcon';
-import WarningIcon from '@icons/WarningIcon';
-import XCircleIcon from '@icons/XCircleIcon';
-import { CommonInputProps } from '@type/common.type';
+import CheckIcon from '@components/icons/CheckIcon';
+import CircleIcon from '@components/icons/CircleIcon';
+import WarningIcon from '@components/icons/WarningIcon';
+import XCircleIcon from '@components/icons/XCircleIcon';
+import { CommonInputProps } from '@components/input/CommonInput';
+import { RecordString } from '@type/common.type';
 import {
     ButtonSizeStyleMap,
     ButtonVariantStyleMap,
-    InputSizeStyleMap, InputVariantStyleMap, StatusBadgeVariantMap,
+    InputSizeStyleMap, InputVariantStyleMap,
+    SizeType,
+    StatusBadgeVariantMap,
     StatusChipTypeMap,
     ToggleSwitchStyleMap
 } from '@type/common/style.type';
@@ -195,6 +198,7 @@ export const INPUT_SIZE_STYLES: InputSizeStyleMap = {
     }
 } as const;
 
+// Input variant style presets.
 export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
     OUTLINED: {
         '& .MuiOutlinedInput-root': {
@@ -302,4 +306,20 @@ export const STATUS_CHIP_MAP: StatusChipTypeMap = {
         textColor: '#71717A',
         label: 'Absent'
     }
+};
+
+// Textarea resize cursor style presets.
+export const RESIZE_CURSORS: RecordString = {
+    vertical: 'cursor-ns-resize',
+    block: 'cursor-ns-resize',
+    horizontal: 'cursor-ew-resize',
+    inline: 'cursor-ew-resize',
+    both: 'cursor-se-resize'
+};
+
+// Tooltip size style presets.
+export const sizeStyles: Record<SizeType, { fontSize: number; padding: string; borderRadius: string }> = {
+    sm: { fontSize: 14, padding: '8px 12px', borderRadius: '8px' },
+    md: { fontSize: 16, padding: '10px 16px', borderRadius: '8px' },
+    lg: { fontSize: 16, padding: '8px 10px', borderRadius: '10px' }
 };

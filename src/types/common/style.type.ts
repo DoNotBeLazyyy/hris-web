@@ -40,6 +40,52 @@ interface StatusBadgeTypeConfig {
     // Icon displayed alongside the label
     icon: ReactNode;
 }
+// Tab menu variant type
+export type TabMenuVariant = 'filled' | 'outlined' | 'soft';
+
+// Tab style props
+export interface TabStyleParams {
+    // isActive tab state
+    isActive: boolean;
+
+    // main color for active state based on variant
+    color: string;
+
+    // text color for active state based on variant
+    textColor: string;
+
+    // variant of the tab menu (filled, outlined, soft)
+    variant: string;
+}
+
+export interface TabContainerStyleParams {
+    // whether the variant is filled
+    isFilled: boolean;
+
+    // whether the variant is outlined
+    isOutlined: boolean;
+
+    // whether the orientation is vertical
+    isVertical: boolean;
+
+    // main color for active state based on variant
+    color: string;
+}
+
+// SizeType used for defining size.
+export type SizeType = 'sm' | 'md' | 'lg';
+
+// VariantType used for defining variant.
+export type VariantType = 'filled' | 'outlined';
+
+// SizeType used for defining size of CommonRadioButton.
+export type CommonRadioButtonSize = 'size' | 'icon' | 'checkedIcon';
+
+// Utility type to extract the element type from a ThemeSx array or return ThemeSx if it's not an array.
+export type SxElement = Exclude<ThemeSx, readonly unknown[]>;
+export type TabOrientation = 'horizontal' | 'vertical'
+export type TooltipVariant = 'tooltip' | 'arrow'
+export type ProgressBarVariant = 'value' | 'variant'
 
 // Input style props
 export type InputVariant = 'OUTLINED' | 'FILLED';
