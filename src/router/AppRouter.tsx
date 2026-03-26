@@ -1,4 +1,3 @@
-
 import BasePage from '@pages/BasePage';
 import { adminRoutes } from '@router/admin/admin.route';
 import { componentSampleRoutes } from '@router/component-sample/component-sample.route';
