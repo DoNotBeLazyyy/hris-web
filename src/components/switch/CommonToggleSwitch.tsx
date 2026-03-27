@@ -17,7 +17,7 @@ interface CommonToggleSwitchProps extends Omit<SwitchProps, 'size'> {
  * A reusable toggle switch component built with MUI that supports
  * multiple predefined sizes and an optional label.
  *
- * Example:
+ * @example
  * <CommonToggleSwitch
  *   size="MEDIUM"
  *   label="Enable Notifications"
