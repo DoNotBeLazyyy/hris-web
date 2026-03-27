@@ -35,10 +35,10 @@ export default function BasePage() {
                 <CommonStatusBadge label="ERROR" status="ERROR" />
             </div>
             <div className="w-full flex justify-center gap-4">
-                <CommonStatusChip status="ACTIVE" />
-                <CommonStatusChip status="INACTIVE" />
-                <CommonStatusChip status="PRESENT" />
-                <CommonStatusChip status="ABSENT" />
+                <CommonStatusChip chipStatus="ACTIVE" />
+                <CommonStatusChip chipStatus="INACTIVE" />
+                <CommonStatusChip chipStatus="PRESENT" />
+                <CommonStatusChip chipStatus="ABSENT" />
             </div>
             <div className="w-full">
                 <Outlet />
