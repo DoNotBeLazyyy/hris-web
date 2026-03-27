@@ -1,6 +1,6 @@
 import { TOGGLE_SWITCH_STYLE } from '@constants/style.constant';
 import { FormControlLabel, Switch, SwitchProps } from '@mui/material';
-import { InputChangeEvent } from '@type/common.type';
+import { InputChangeEvent, ThemeSx } from '@type/common.type';
 import { ToggleSwitchSize } from '@type/common/style.type';
 import { useState } from 'react';
 
@@ -31,7 +31,7 @@ export default function CommonToggleSwitch({
 }: CommonToggleSwitchProps) {
     const [checked, setChecked] = useState(false); // Manages the toggle switch checked (on/off) state
     const { width, height, thumbSize, padding } = TOGGLE_SWITCH_STYLE[size]; // Extract size-based styling values for the switch
-    const baseStyle = {
+    const baseStyle: ThemeSx = {
         height: `${height}px`,
         padding: 0,
         width: `${width}px`,
