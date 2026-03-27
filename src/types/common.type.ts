@@ -1,5 +1,5 @@
 import { SxProps, Theme } from '@mui/material/styles';
-import { ChangeEvent, MouseEvent, SVGProps } from 'react';
+import { ChangeEvent, HTMLAttributes, MouseEvent, SVGProps } from 'react';
 
 // event type for input change events.
 export type InputChangeEvent = ChangeEvent<HTMLInputElement>;
@@ -12,6 +12,9 @@ export type TooltipSlotProps = 'title' | 'children';
 
 // Icon props
 export type IconSvgProps = SVGProps<SVGSVGElement>;
+
+// Html div props
+export type HTMLDivAttributes = HTMLAttributes<HTMLDivElement>;
 
 // MUI props
 export type ThemeSx = SxProps<Theme>;

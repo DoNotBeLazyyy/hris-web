@@ -1,5 +1,5 @@
-import { ThemeSx } from '@type/common.type';
-import { CSSProperties } from 'react';
+import { IconSvgProps, ThemeSx } from '@type/common.type';
+import { CSSProperties, FC } from 'react';
 
 // Button style props
 export type ButtonVariant = 'PRIMARY' | 'SECONDARY' | 'OUTLINE' | 'GHOST';
@@ -25,8 +25,53 @@ interface ButtonSizeStyleConfig {
     buttonIconSize: string;
 }
 
+// Badge style props
+export type StatusBadgeVariant = 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR';
+export type StatusBadgeVariantMap = Record<StatusBadgeVariant, StatusBadgeTypeConfig>;
+
+// Status badge configuration
+interface StatusBadgeTypeConfig {
+    // Background color of the badge
+    backgroundColor: string;
+
+    // Text and border color of the badge
+    color: string;
+
+    // Icon displayed alongside the label
+    icon: FC<IconSvgProps>;
+}
+
 // Tab menu variant type
 export type TabMenuVariant = 'filled' | 'outlined' | 'soft';
+
+// Tab style props
+export interface TabStyleParams {
+    // main color for active state based on variant
+    color: string;
+
+    // isActive tab state
+    isActive: boolean;
+
+    // text color for active state based on variant
+    textColor: string;
+
+    // variant of the tab menu (filled, outlined, soft)
+    variant: string;
+}
+
+export interface TabContainerStyleParams {
+     // main color for active state based on variant
+    color: string;
+
+    // whether the variant is filled
+    isFilled: boolean;
+
+    // whether the variant is outlined
+    isOutlined: boolean;
+
+    // whether the orientation is vertical
+    isVertical: boolean;
+}
 
 // SizeType used for defining size.
 export type SizeType = 'sm' | 'md' | 'lg';
@@ -39,11 +84,8 @@ export type CommonRadioButtonSize = 'size' | 'icon' | 'checkedIcon';
 
 // Utility type to extract the element type from a ThemeSx array or return ThemeSx if it's not an array.
 export type SxElement = Exclude<ThemeSx, readonly unknown[]>;
-
 export type TabOrientation = 'horizontal' | 'vertical'
-
 export type TooltipVariant = 'tooltip' | 'arrow'
-
 export type ProgressBarVariant = 'value' | 'variant'
 
 // Input style props
@@ -76,31 +118,37 @@ interface InputSizeStyleConfig {
     rightIconSize: string;
 }
 
-// Tab style props
-export interface TabStyleParams {
-    // isActive tab state
-    isActive: boolean;
+// Toggle switch props
+export type ToggleSwitchSize = 'SMALL' | 'MEDIUM' | 'LARGE';
+export type ToggleSwitchStyleMap = Record<ToggleSwitchSize, ToggleSwitchStyleConfig>;
 
-    // main color for active state based on variant
-    color: string;
+// Toggle switch size configuration
+interface ToggleSwitchStyleConfig {
+    // Total height of the switch component
+    height: number;
 
-    // text color for active state based on variant
-    textColor: string;
+    // Internal padding around the thumb within the switch track
+    padding: number;
 
-    // variant of the tab menu (filled, outlined, soft)
-    variant: string;
+    // Diameter/size of the switch thumb (the draggable circle)
+    thumbSize: number;
+
+    // Total width of the switch component
+    width: number;
 }
 
-export interface TabContainerStyleParams {
-    // whether the variant is filled
-    isFilled: boolean;
+// Status chip props
+export type StatusChipType = 'ACTIVE' | 'INACTIVE' | 'PRESENT' | 'ABSENT';
+export type StatusChipTypeMap = Record<StatusChipType, StatusChipTypeConfig>;
 
-    // whether the variant is outlined
-    isOutlined: boolean;
+//
+interface StatusChipTypeConfig {
+    // Background color of the status chip
+    backgroundColor: string;
 
-    // whether the orientation is vertical
-    isVertical: boolean;
+    // Display label for the status
+    label: string;
 
-    // main color for active state based on variant
-    color: string;
+    // Text and icon color of the status chip
+    textColor: string;
 }
