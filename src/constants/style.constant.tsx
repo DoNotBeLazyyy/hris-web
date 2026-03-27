@@ -286,25 +286,25 @@ export const TOGGLE_SWITCH_STYLE: ToggleSwitchStyleMap = {
 
 // Mapping of chip status to its UI properties
 export const STATUS_CHIP_MAP: StatusChipTypeMap = {
-    ACTIVE:   {
+    ACTIVE: {
         backgroundColor: '#CEF6DF',
-        textColor: '#2DCC70',
-        label: 'Active'
+        label: 'Active',
+        textColor: '#2DCC70'
     },
-    PRESENT:  {
+    PRESENT: {
         backgroundColor: '#CEF6DF',
-        textColor: '#2DCC70',
-        label: 'Present'
+        label: 'Present',
+        textColor: '#2DCC70'
     },
     INACTIVE: {
         backgroundColor: '#E4E4E7',
-        textColor: '#71717A',
-        label: 'Inactive'
+        label: 'Inactive',
+        textColor: '#71717A'
     },
-    ABSENT:   {
+    ABSENT: {
         backgroundColor: '#E4E4E7',
-        textColor: '#71717A',
-        label: 'Absent'
+        label: 'Absent',
+        textColor: '#71717A'
     }
 };
 

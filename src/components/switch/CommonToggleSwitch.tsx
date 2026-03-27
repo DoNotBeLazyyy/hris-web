@@ -2,6 +2,7 @@ import { TOGGLE_SWITCH_STYLE } from '@constants/style.constant';
 import { FormControlLabel, Switch, SwitchProps } from '@mui/material';
 import { InputChangeEvent, ThemeSx } from '@type/common.type';
 import { ToggleSwitchSize } from '@type/common/style.type';
+import { normalizeSx } from '@utils/theme.util';
 import { useState } from 'react';
 
 interface CommonToggleSwitchProps extends Omit<SwitchProps, 'size'> {
@@ -61,7 +62,7 @@ export default function CommonToggleSwitch({
             opacity: 1,
             width: `${width}px`
         },
-        ...sx
+        ...normalizeSx(sx)
     }; // Base styling for the toggle switch, including size, thumb, track, and checked state behavior
 
     /**
@@ -74,22 +75,20 @@ export default function CommonToggleSwitch({
         setChecked(event.target.checked);
     }
 
-    return (
-        <FormControlLabel
-            control={
-                <Switch
-                    checked={checked}
-                    sx={baseStyle}
-                    onChange={handleChange}
-                    {...props}
-                />
-            }
-            label={label}
-            sx={{
-                gap: '16px',
-                margin: 0,
-                '& .MuiFormControlLabel-label': { marginLeft: 0 }
-            }}
-        />
-    );
+    return <FormControlLabel
+        control={
+            <Switch
+                checked={checked}
+                sx={baseStyle}
+                onChange={handleChange}
+                {...props}
+            />
+        }
+        label={label}
+        sx={{
+            gap: '16px',
+            margin: 0,
+            '& .MuiFormControlLabel-label': { marginLeft: 0 }
+        }}
+    />;
 };

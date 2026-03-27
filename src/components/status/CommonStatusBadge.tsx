@@ -2,7 +2,7 @@ import { STATUS_BADGE_STYLE } from '@constants/style.constant';
 import { HTMLDivAttributes, IconSvgProps } from '@type/common.type';
 import { classMerge } from '@utils/css.util';
 
-interface CommonStatusBadgeProps extends HTMLDivAttributes {
+export interface CommonStatusBadgeProps extends HTMLDivAttributes {
     // Customize the badge icon
     iconProps?: IconSvgProps;
 

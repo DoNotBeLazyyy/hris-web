@@ -40,16 +40,17 @@ interface StatusBadgeTypeConfig {
     // Icon displayed alongside the label
     icon: FC<IconSvgProps>;
 }
+
 // Tab menu variant type
 export type TabMenuVariant = 'filled' | 'outlined' | 'soft';
 
 // Tab style props
 export interface TabStyleParams {
-    // isActive tab state
-    isActive: boolean;
-
     // main color for active state based on variant
     color: string;
+
+    // isActive tab state
+    isActive: boolean;
 
     // text color for active state based on variant
     textColor: string;
@@ -59,6 +60,9 @@ export interface TabStyleParams {
 }
 
 export interface TabContainerStyleParams {
+     // main color for active state based on variant
+    color: string;
+
     // whether the variant is filled
     isFilled: boolean;
 
@@ -67,9 +71,6 @@ export interface TabContainerStyleParams {
 
     // whether the orientation is vertical
     isVertical: boolean;
-
-    // main color for active state based on variant
-    color: string;
 }
 
 // SizeType used for defining size.
@@ -126,11 +127,11 @@ interface ToggleSwitchStyleConfig {
     // Total height of the switch component
     height: number;
 
-    // Diameter/size of the switch thumb (the draggable circle)
-    thumbSize: number;
-
     // Internal padding around the thumb within the switch track
     padding: number;
+
+    // Diameter/size of the switch thumb (the draggable circle)
+    thumbSize: number;
 
     // Total width of the switch component
     width: number;
@@ -138,16 +139,16 @@ interface ToggleSwitchStyleConfig {
 
 // Status chip props
 export type StatusChipType = 'ACTIVE' | 'INACTIVE' | 'PRESENT' | 'ABSENT';
-export type StatusChipTypeMap = Record<StatusChipType,StatusChipTypeConfig>;
+export type StatusChipTypeMap = Record<StatusChipType, StatusChipTypeConfig>;
 
 //
 interface StatusChipTypeConfig {
     // Background color of the status chip
     backgroundColor: string;
 
-    // Text and icon color of the status chip
-    textColor: string;
-
     // Display label for the status
     label: string;
+
+    // Text and icon color of the status chip
+    textColor: string;
 }

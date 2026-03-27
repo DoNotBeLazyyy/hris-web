@@ -1,9 +1,9 @@
-import CommonStatusBadge from '@components/status/CommonStatusBadge';
+import CommonStatusBadge, { CommonStatusBadgeProps } from '@components/status/CommonStatusBadge';
 import { STATUS_CHIP_MAP } from '@constants/style.constant';
 
-interface StatusChipProps {
+interface StatusChipProps extends Omit<CommonStatusBadgeProps, 'label'> {
     // Determines the chip style
-    status: keyof typeof STATUS_CHIP_MAP;
+    chipStatus: keyof typeof STATUS_CHIP_MAP;
 }
 
 /**
@@ -18,16 +18,19 @@ interface StatusChipProps {
  *  />
  */
 export default function CommonStatusChip({
-    status
+    chipStatus,
+    iconProps,
+    ...props
 }: StatusChipProps) {
-    const { backgroundColor, textColor, label } = STATUS_CHIP_MAP[status]; // Destructure the style and label for the current status
+    const { backgroundColor, textColor, label } = STATUS_CHIP_MAP[chipStatus]; // Destructure the style and label for the current status
 
     return (
         <CommonStatusBadge
             className="border-[0px] font-[600] gap-[4px] h-[16px] inline-flex items-center leading-[16px] px-[8px] rounded-[9999px]"
             iconProps={{
                 height: 6,
-                width: 6
+                width: 6,
+                ...iconProps
             }}
             label={label}
             status="INFO"
@@ -35,6 +38,7 @@ export default function CommonStatusChip({
                 backgroundColor,
                 color: textColor
             }}
+            {...props}
         />
     );
 }
