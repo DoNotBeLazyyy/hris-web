@@ -1,7 +1,7 @@
 import { CommonInputProps } from '@components/input/CommonInput';
 import { StringValueMap, ThemeSxRecord } from '@type/common.type';
 import {
-    ButtonSizeStyleMap, ButtonVariantStyleMap, CardSize, InputSizeStyleMap, InputVariantStyleMap, SizeType
+  ButtonSizeStyleMap, ButtonVariantStyleMap, CardSize, InputSizeStyleMap, InputVariantStyleMap, SizeType
 } from '@type/common/style.type';
 
 // Button variant style presets.
