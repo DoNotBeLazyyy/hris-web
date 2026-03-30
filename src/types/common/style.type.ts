@@ -104,3 +104,6 @@ export interface TabContainerStyleParams {
     // main color for active state based on variant
     color: string;
 }
+
+// Card style props
+export type CardSize = 'XSMALL' | 'SMALL' | 'MEDIUM' | 'LARGE';
