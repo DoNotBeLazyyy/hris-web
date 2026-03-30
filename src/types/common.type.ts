@@ -1,18 +1,19 @@
-import { TextFieldProps } from '@mui/material';
 import { SxProps, Theme } from '@mui/material/styles';
+import { ChangeEvent, MouseEvent, SVGProps } from 'react';
 import { FieldStyleProps } from '@type/common/style.type';
-import React from 'react';
+import { TextFieldProps } from 'node_modules/@mui/material/esm/TextField/TextField';
 
 // event type for input change events.
-export type InputChangeEvent = React.ChangeEvent<HTMLInputElement>;
+export type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 
-// Set Button mouse event
-export type ButtonMouseEvent = React.MouseEvent<HTMLButtonElement>;
+// Event props
+export type ButtonMouseEvent = MouseEvent<HTMLButtonElement>;
 
+// Slot props for components that have multiple customizable slots.
 export type TooltipSlotProps = 'title' | 'children';
 
 // Icon props
-export type IconSvgProps = React.SVGProps<SVGSVGElement>;
+export type IconSvgProps = SVGProps<SVGSVGElement>;
 
 // MUI props
 export type ThemeSx = SxProps<Theme>;
@@ -25,3 +26,5 @@ export type RecordStringUnknown = Record<string, unknown>
 
 // Props for common input components, extending MUI TextField with custom size and variant controls
 export type CommonInputProps = Omit<TextFieldProps, 'size' | 'variant'> & FieldStyleProps;
+
+export type RecordString = Record<string, string>;

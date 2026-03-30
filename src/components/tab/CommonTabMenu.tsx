@@ -1,6 +1,4 @@
-import HomeIconBlue from '@assets/images/icons/home-icon-blue.png';
-import HomeIconGray from '@assets/images/icons/home-icon-gray.png';
-import HomeIconWhite from '@assets/images/icons/home-icon-white.png';
+import HomeIcon from '@components/icons/HomeIcon';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { StringNum, ThemeSx } from '@type/common.type';
@@ -119,22 +117,13 @@ export default function CommonTabMenu({
         >
             {tabs.map((tab) => {
                 const isActive = value === tab.value;
-                const iconSize = tab.iconSize ?? 18;
-                const iconSrc = isActive
+                const iconColor = isActive
                     ? (isFilled
-                        ? HomeIconWhite
-                        : HomeIconBlue)
-                    : HomeIconGray;
+                        ? '#F2F7FE'
+                        : '#022179')
+                    : undefined;
                 const tabIcon = tab.icon === true
-                    ? (
-                        <img
-                            src={iconSrc}
-                            style={{
-                                width: iconSize,
-                                height: iconSize
-                            }}
-                        />
-                    )
+                    ? <HomeIcon color={iconColor} />
                     : tab.icon || undefined;
 
                 return (
@@ -152,6 +141,9 @@ export default function CommonTabMenu({
                                 textColor,
                                 variant
                             }),
+                            ...(tabIcon
+                                ? [{ gap: '6px', '& .MuiTab-iconWrapper': { marginRight: 0 } }]
+                                : []),
                             ...normalizeSx(tabSx)
                         ]}
                         value={tab.value}
