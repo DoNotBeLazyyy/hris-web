@@ -1,7 +1,7 @@
 import { CommonInputProps } from '@components/input/CommonInput';
-import { RecordString } from '@type/common.type';
+import { StringValueMap, ThemeSxRecord } from '@type/common.type';
 import {
-    ButtonSizeStyleMap, ButtonVariantStyleMap, InputSizeStyleMap, InputVariantStyleMap, SizeType
+    ButtonSizeStyleMap, ButtonVariantStyleMap, CardSize, InputSizeStyleMap, InputVariantStyleMap, SizeType
 } from '@type/common/style.type';
 
 // Button variant style presets.
@@ -229,12 +229,32 @@ export const INPUT_VARIANT_STYLES: InputVariantStyleMap = {
 };
 
 // Textarea resize cursor style presets.
-export const RESIZE_CURSORS: RecordString = {
+export const RESIZE_CURSORS: StringValueMap = {
     vertical: 'cursor-ns-resize',
     block: 'cursor-ns-resize',
     horizontal: 'cursor-ew-resize',
     inline: 'cursor-ew-resize',
     both: 'cursor-se-resize'
+};
+
+// Card size style presets.
+export const CARD_SIZE_STYLES: ThemeSxRecord<CardSize> = {
+    XSMALL: {
+        borderRadius: '5px',
+        gap: '26px'
+    },
+    SMALL: {
+        borderRadius: '16px',
+        gap: '10px'
+    },
+    MEDIUM: {
+        borderRadius: '16px',
+        gap: '12px'
+    },
+    LARGE: {
+        borderRadius: '16px',
+        gap: '16px'
+    }
 };
 
 // Tooltip size style presets.

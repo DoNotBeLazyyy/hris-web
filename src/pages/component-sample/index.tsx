@@ -14,6 +14,14 @@ export default function ComponentSample() {
             path: 'input'
         },
         {
+            label: 'Modal',
+            path: 'modal'
+        },
+        {
+            label: 'Card',
+            path: 'card'
+        },
+        {
             label: 'Select',
             path: 'select'
         },
@@ -102,7 +110,6 @@ export default function ComponentSample() {
                     </Stack>
                 </Toolbar>
             </AppBar>
-
             <Box
                 sx={{
                     mx: 'auto',

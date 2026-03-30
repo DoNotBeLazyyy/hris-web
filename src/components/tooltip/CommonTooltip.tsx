@@ -1,6 +1,6 @@
 import { sizeStyles } from '@constants/style.constant';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import { RecordStringUnknown, TooltipSlotProps } from '@type/common.type';
+import { TooltipSlotProps, UnknownStringKeyMap } from '@type/common.type';
 import { SizeType, TooltipVariant, VariantType } from '@type/common/style.type';
 import { ReactElement, ReactNode } from 'react';
 
@@ -81,7 +81,7 @@ export default function CommonTooltip({
      * @returns
      */
     function sx(key: TooltipVariant) {
-        return (slotProps?.[key] as RecordStringUnknown)?.sx as RecordStringUnknown;
+        return (slotProps?.[key] as UnknownStringKeyMap)?.sx as UnknownStringKeyMap;
     }
 
     return (
