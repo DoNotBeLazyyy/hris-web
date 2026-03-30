@@ -2,7 +2,7 @@ import { INPUT_SIZE_STYLES, INPUT_VARIANT_STYLES } from '@constants/style.consta
 import { TextField } from '@mui/material';
 import { CSSObject, styled } from '@mui/material/styles';
 import deepmerge from '@mui/utils/deepmerge';
-import { ThemeSx } from '@type/common.type';
+import { ThemeSx, UnknownStringKeyMap } from '@type/common.type';
 import { FieldStyleProps, SxElement, TabContainerStyleParams, TabStyleParams } from '@type/common/style.type';
 import { ComponentProps, ComponentType } from 'react';
 
@@ -139,7 +139,7 @@ export function tabContainerStyle({
     isOutlined,
     isVertical,
     color
-}: TabContainerStyleParams): Record<string, unknown> {
+}: TabContainerStyleParams): UnknownStringKeyMap {
     if (isOutlined) {
         return {
             ...(isVertical && { borderRight: '2px solid #E5E7EB' }),
@@ -169,7 +169,7 @@ export function tabStyle({
     color,
     textColor,
     variant
-}: TabStyleParams): Record<string, unknown> {
+}: TabStyleParams): UnknownStringKeyMap {
     const isFilled = variant === 'filled';
     const isOutlined = variant === 'outlined';
 
