@@ -1,7 +1,7 @@
-import { spreadSx } from '@constants/style.constant';
 import LinearProgress, { LinearProgressProps } from '@mui/material/LinearProgress';
 import { ThemeSx } from '@type/common.type';
 import { ProgressBarVariant } from '@type/common/style.type';
+import { getProgressColor, normalizeSx } from '@utils/theme.util';
 
 interface CommonProgressBarProps extends Omit<LinearProgressProps, ProgressBarVariant> {
     // border radius of the progress bar in pixels.
@@ -48,13 +48,7 @@ export default function CommonProgressBar({
     const clampedValue = Math.min(100, Math.max(0, value)); // ensure value is between 0 and 100
     const progressHeight = height ?? 8; // default height if not provided
     const borderProgressRadius = borderRadius ?? 999; // default to pill shape if borderRadius is not provided
-    const color = customColor
-        ?? (clampedValue <= 15
-            ? '#EF4444'
-            : clampedValue <= 35
-                ? '#F59E0B'
-                : '#3B82F6'
-        ); // default color logic based on value thresholds
+    const color = getProgressColor(clampedValue, customColor);
     const progressSx = {
         height : progressHeight,
         borderRadius: borderProgressRadius,
@@ -73,7 +67,7 @@ export default function CommonProgressBar({
             {...props}
             sx={[
                 progressSx,
-                ...spreadSx(sx)
+                ...normalizeSx(sx)
             ]}
         />
     );

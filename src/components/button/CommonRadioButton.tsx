@@ -1,8 +1,8 @@
-import { spreadSx } from '@constants/style.constant';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio, { RadioProps } from '@mui/material/Radio';
 import { ThemeSx } from '@type/common.type';
 import { CommonRadioButtonSize } from '@type/common/style.type';
+import { normalizeSx } from '@utils/theme.util';
 import { ReactNode } from 'react';
 
 /**
@@ -142,7 +142,7 @@ export default function CommonRadioButton({
                                 backgroundColor: 'transparent'
                             }
                         },
-                        ...spreadSx(radioSx)
+                        ...normalizeSx(radioSx)
                     ]}
                     value={props.value}
                     {...props}

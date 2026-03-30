@@ -1,11 +1,11 @@
 import HomeIconBlue from '@assets/images/icons/home-icon-blue.png';
 import HomeIconGray from '@assets/images/icons/home-icon-gray.png';
 import HomeIconWhite from '@assets/images/icons/home-icon-white.png';
-import { tabContainerStyle, tabStyle, spreadSx } from '@constants/style.constant';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { StringNum, ThemeSx } from '@type/common.type';
 import { TabMenuVariant, TabOrientation } from '@type/common/style.type';
+import { tabContainerStyle, tabStyle, normalizeSx } from '@utils/theme.util';
 import { ReactElement, SyntheticEvent } from 'react';
 
 export interface TabItem {
@@ -112,7 +112,7 @@ export default function CommonTabMenu({
                         color
                     })
                 },
-                ...spreadSx(sx)
+                ...normalizeSx(sx)
             ]}
             value={value}
             onChange={handleChange}
@@ -152,7 +152,7 @@ export default function CommonTabMenu({
                                 textColor,
                                 variant
                             }),
-                            ...spreadSx(tabSx)
+                            ...normalizeSx(tabSx)
                         ]}
                         value={tab.value}
                     />

@@ -1,7 +1,8 @@
 import { sizeStyles } from '@constants/style.constant';
 import Tooltip, { TooltipProps } from '@mui/material/Tooltip';
-import { RecordStringUnknown, TooltipSlotProps } from '@type/common.type';
-import { SizeType, TooltipVariant, VariantType } from '@type/common/style.type';
+import { TooltipSlotProps } from '@type/common.type';
+import { SizeType, VariantType } from '@type/common/style.type';
+import { getSlotSx } from '@utils/theme.util';
 import { ReactElement, ReactNode } from 'react';
 
 interface CommonTooltipProps extends Omit<TooltipProps, TooltipSlotProps> {
@@ -74,16 +75,6 @@ export default function CommonTooltip({
         maxWidth: 'none'
     }; // sx styles for the tooltip based on variant and size
 
-    /**
-     * Helper function to extract sx styles from slotProps for tooltip and arrow.
-     *
-     * @param key - 'tooltip' or 'arrow' to specify which slot's sx to extract.
-     * @returns
-     */
-    function sx(key: TooltipVariant) {
-        return (slotProps?.[key] as RecordStringUnknown)?.sx as RecordStringUnknown;
-    }
-
     return (
         <Tooltip
             arrow={arrow ?? true}
@@ -96,7 +87,7 @@ export default function CommonTooltip({
                     ...slotProps?.tooltip,
                     sx: {
                         ...tooltipSx,
-                        ...sx('tooltip')
+                        ...getSlotSx(slotProps, 'tooltip')
                     }
                 },
                 arrow: {
@@ -111,7 +102,7 @@ export default function CommonTooltip({
                                 ? 'none'
                                 : `1.5px solid ${tooltipColor}`
                         },
-                        ...sx('arrow')
+                        ...getSlotSx(slotProps, 'arrow')
                     }
                 }
             }}
